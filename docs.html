@@ -1,0 +1,709 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Documentation - CSS Animation Playground</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <link rel="stylesheet" href="assets/styles/gallery.css" />
+    <style>
+      .docs-container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 2rem;
+        background: var(--bg-primary);
+      }
+
+      .docs-header {
+        text-align: center;
+        margin-bottom: 3rem;
+        padding: 2rem 0;
+        background: linear-gradient(
+          135deg,
+          rgba(0, 188, 212, 0.1),
+          rgba(0, 229, 255, 0.05)
+        );
+        border-radius: 20px;
+      }
+
+      .docs-title {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        color: var(--accent-primary);
+      }
+
+      .docs-subtitle {
+        font-size: 1.2rem;
+        color: var(--text-secondary);
+        max-width: 600px;
+        margin: 0 auto;
+      }
+
+      .docs-nav {
+        background: rgba(22, 27, 34, 0.8);
+        border-radius: 15px;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        backdrop-filter: blur(10px);
+        border: 1px solid rgba(0, 229, 255, 0.2);
+      }
+
+      .docs-nav h3 {
+        color: var(--accent-primary);
+        margin-bottom: 1rem;
+      }
+
+      .docs-nav ul {
+        list-style: none;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 0.5rem;
+      }
+
+      .docs-nav a {
+        color: var(--text-secondary);
+        text-decoration: none;
+        padding: 0.5rem 1rem;
+        border-radius: 8px;
+        transition: all 0.3s ease;
+        display: block;
+      }
+
+      .docs-nav a:hover {
+        background: rgba(0, 229, 255, 0.1);
+        color: var(--accent-primary);
+      }
+
+      .docs-section {
+        background: rgba(22, 27, 34, 0.6);
+        border-radius: 15px;
+        padding: 2rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(0, 229, 255, 0.1);
+      }
+
+      .docs-section h2 {
+        color: var(--accent-primary);
+        font-size: 2rem;
+        margin-bottom: 1rem;
+        border-bottom: 2px solid var(--accent-primary);
+        padding-bottom: 0.5rem;
+      }
+
+      .docs-section h3 {
+        color: var(--accent-secondary);
+        font-size: 1.4rem;
+        margin: 2rem 0 1rem 0;
+      }
+
+      .docs-section h4 {
+        color: var(--text-primary);
+        font-size: 1.1rem;
+        margin: 1.5rem 0 0.5rem 0;
+      }
+
+      .docs-section p {
+        line-height: 1.6;
+        margin-bottom: 1rem;
+        color: var(--text-secondary);
+      }
+
+      .docs-section ul,
+      .docs-section ol {
+        margin: 1rem 0;
+        padding-left: 2rem;
+      }
+
+      .docs-section li {
+        margin-bottom: 0.5rem;
+        color: var(--text-secondary);
+      }
+
+      .code-example {
+        background: rgba(13, 17, 23, 0.9);
+        border: 1px solid rgba(0, 229, 255, 0.2);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin: 1.5rem 0;
+        font-family: "Courier New", monospace;
+        font-size: 0.9rem;
+        overflow-x: auto;
+        position: relative;
+      }
+
+      .code-example::before {
+        content: attr(data-label);
+        position: absolute;
+        top: -10px;
+        left: 15px;
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+        padding: 4px 12px;
+        font-size: 0.75rem;
+        border-radius: 6px;
+        font-weight: bold;
+      }
+
+      .tip-box {
+        background: rgba(0, 188, 212, 0.1);
+        border-left: 4px solid var(--accent-primary);
+        padding: 1rem 1.5rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1.5rem 0;
+      }
+
+      .warning-box {
+        background: rgba(255, 152, 0, 0.1);
+        border-left: 4px solid #ff9800;
+        padding: 1rem 1.5rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1.5rem 0;
+      }
+
+      .error-box {
+        background: rgba(244, 67, 54, 0.1);
+        border-left: 4px solid #f44336;
+        padding: 1rem 1.5rem;
+        border-radius: 0 8px 8px 0;
+        margin: 1.5rem 0;
+      }
+
+      .back-to-top {
+        position: fixed;
+        bottom: 2rem;
+        left: 2rem;
+        background: var(--accent-primary);
+        color: var(--bg-primary);
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        border: none;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        transition: all 0.3s ease;
+        z-index: 1000;
+      }
+
+      .back-to-top:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 12px rgba(0, 188, 212, 0.4);
+      }
+
+      @media (max-width: 768px) {
+        .docs-container {
+          padding: 1rem;
+        }
+
+        .docs-title {
+          font-size: 2rem;
+        }
+
+        .docs-nav ul {
+          grid-template-columns: 1fr;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="page-transition" id="pageTransition"></div>
+    <div class="particles" id="particles"></div>
+
+    <nav class="navbar">
+      <div class="logo">AnimationPlayground</div>
+      <div class="nav-container">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="playground.html">Playground</a></li>
+          <li><a href="gallery.html">Gallery</a></li>
+          <li><a href="docs.html" class="active">Docs</a></li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle">🌙</button>
+      </div>
+    </nav>
+
+    <div class="docs-container">
+      <div class="docs-header">
+        <h1 class="docs-title">📚 Complete Guide</h1>
+        <p class="docs-subtitle">
+          Everything you need to know about using CSS animations, from beginner
+          basics to advanced techniques.
+        </p>
+      </div>
+
+      <div class="docs-nav">
+        <h3>📖 Quick Navigation</h3>
+        <ul>
+          <li><a href="#getting-started">🚀 Getting Started</a></li>
+          <li><a href="#basic-concepts">💡 Basic Concepts</a></li>
+          <li><a href="#implementation">🔧 Implementation Guide</a></li>
+          <li><a href="#customization">🎨 Customization Tips</a></li>
+          <li><a href="#troubleshooting">🐛 Troubleshooting</a></li>
+          <li><a href="#performance">⚡ Performance Tips</a></li>
+          <li><a href="#browser-support">🌐 Browser Support</a></li>
+          <li><a href="#examples">📝 Complete Examples</a></li>
+        </ul>
+      </div>
+
+      <section id="getting-started" class="docs-section">
+        <h2>🚀 Getting Started</h2>
+
+        <h3>What is CSS Animation?</h3>
+        <p>
+          CSS animations allow you to change CSS properties smoothly over time.
+          They're powerful tools for creating engaging user experiences without
+          JavaScript.
+        </p>
+
+        <h3>Step-by-Step: Your First Animation</h3>
+
+        <h4>1. Copy Animation Code</h4>
+        <p>
+          Go to our
+          <a href="gallery.html" style="color: var(--accent-primary)"
+            >Gallery</a
+          >
+          and click "Copy Code" on any animation you like.
+        </p>
+
+        <h4>2. Create HTML Structure</h4>
+        <div class="code-example" data-label="HTML">
+          &lt;!DOCTYPE html&gt; &lt;html lang="en"&gt; &lt;head&gt; &lt;meta
+          charset="UTF-8"&gt; &lt;meta name="viewport"
+          content="width=device-width, initial-scale=1.0"&gt; &lt;title&gt;My
+          First Animation&lt;/title&gt; &lt;link rel="stylesheet"
+          href="styles.css"&gt; &lt;/head&gt; &lt;body&gt; &lt;div
+          class="animated-element"&gt; Hello, Animation! &lt;/div&gt;
+          &lt;/body&gt; &lt;/html&gt;
+        </div>
+
+        <h4>3. Add CSS File (styles.css)</h4>
+        <div class="code-example" data-label="CSS">
+          /* Paste the copied animation here */ @keyframes bounce { 0%, 100% {
+          transform: translateY(0); } 50% { transform: translateY(-30px); } }
+          .animated-element { width: 100px; height: 100px; background:
+          linear-gradient(45deg, #00e5ff, #00bcd4); border-radius: 10px;
+          animation: bounce 2s infinite; display: flex; align-items: center;
+          justify-content: center; color: white; font-weight: bold; }
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Pro Tip:</strong> Always test your animations in different
+          browsers and on mobile devices to ensure compatibility!
+        </div>
+      </section>
+
+      <section id="basic-concepts" class="docs-section">
+        <h2>💡 Basic Concepts</h2>
+
+        <h3>The @keyframes Rule</h3>
+        <p>
+          This defines what happens during the animation. You specify styles at
+          different percentages of the animation timeline.
+        </p>
+
+        <div class="code-example" data-label="Basic @keyframes">
+          @keyframes animationName { 0% { /* Start of animation */ transform:
+          scale(1); opacity: 1; } 50% { /* Middle of animation */ transform:
+          scale(1.2); opacity: 0.7; } 100% { /* End of animation */ transform:
+          scale(1); opacity: 1; } }
+        </div>
+
+        <h3>Animation Properties</h3>
+        <ul>
+          <li>
+            <strong>animation-name:</strong> Links to your @keyframes (e.g.,
+            "bounce")
+          </li>
+          <li>
+            <strong>animation-duration:</strong> How long the animation takes
+            (e.g., "2s")
+          </li>
+          <li>
+            <strong>animation-timing-function:</strong> Speed curve (ease,
+            linear, ease-in-out)
+          </li>
+          <li>
+            <strong>animation-delay:</strong> Wait time before starting (e.g.,
+            "0.5s")
+          </li>
+          <li>
+            <strong>animation-iteration-count:</strong> How many times to repeat
+            (1, 3, infinite)
+          </li>
+          <li>
+            <strong>animation-direction:</strong> Play direction (normal,
+            reverse, alternate)
+          </li>
+        </ul>
+
+        <h3>Shorthand Syntax</h3>
+        <div class="code-example" data-label="Shorthand">
+          /* Long form */ animation-name: bounce; animation-duration: 2s;
+          animation-timing-function: ease-in-out; animation-iteration-count:
+          infinite; /* Shorthand (same thing) */ animation: bounce 2s
+          ease-in-out infinite;
+        </div>
+      </section>
+
+      <section id="implementation" class="docs-section">
+        <h2>🔧 Implementation Guide</h2>
+
+        <h3>Method 1: External CSS File (Recommended)</h3>
+        <p>Create a separate CSS file for better organization:</p>
+
+        <div class="code-example" data-label="styles.css">
+          /* Your copied animation */ @keyframes bounce { 0%, 100% { transform:
+          translateY(0); } 50% { transform: translateY(-30px); } } /* Apply to
+          any element */ .my-button { animation: bounce 1s infinite; /* Other
+          styles */ }
+        </div>
+
+        <div class="code-example" data-label="HTML">
+          &lt;link rel="stylesheet" href="styles.css"&gt; &lt;button
+          class="my-button"&gt;Bouncing Button&lt;/button&gt;
+        </div>
+
+        <h3>Method 2: Internal CSS</h3>
+        <div class="code-example" data-label="HTML with internal CSS">
+          &lt;head&gt; &lt;style&gt; @keyframes bounce { 0%, 100% { transform:
+          translateY(0); } 50% { transform: translateY(-30px); } }
+          .animated-element { animation: bounce 2s infinite; } &lt;/style&gt;
+          &lt;/head&gt;
+        </div>
+
+        <h3>Method 3: Inline Styles (Not Recommended)</h3>
+        <div class="warning-box">
+          <strong>⚠️ Warning:</strong> You cannot use @keyframes in inline
+          styles. This method requires JavaScript.
+        </div>
+      </section>
+
+      <section id="customization" class="docs-section">
+        <h2>🎨 Customization Tips</h2>
+
+        <h3>Timing Functions Explained</h3>
+        <ul>
+          <li>
+            <strong>ease:</strong> Slow start, fast middle, slow end (default)
+          </li>
+          <li><strong>linear:</strong> Same speed throughout</li>
+          <li><strong>ease-in:</strong> Slow start, then faster</li>
+          <li><strong>ease-out:</strong> Fast start, then slower</li>
+          <li><strong>ease-in-out:</strong> Slow start and end</li>
+        </ul>
+
+        <div class="code-example" data-label="Custom timing function">
+          /* Custom cubic-bezier curve */ animation-timing-function:
+          cubic-bezier(0.68, -0.55, 0.265, 1.55);
+        </div>
+
+        <h3>Animation Direction Options</h3>
+        <div class="code-example" data-label="Direction examples">
+          animation-direction: normal; /* 0% → 100% */ animation-direction:
+          reverse; /* 100% → 0% */ animation-direction: alternate; /* 0% → 100%
+          → 0% → 100% */ animation-direction: alternate-reverse; /* 100% → 0% →
+          100% → 0% */
+        </div>
+
+        <h3>Multiple Animations</h3>
+        <div class="code-example" data-label="Multiple animations">
+          .element { animation: bounce 2s infinite, fadeIn 1s ease-out,
+          colorChange 3s infinite alternate; }
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Creative Tip:</strong> Combine multiple simple animations
+          to create complex effects!
+        </div>
+      </section>
+
+      <section id="troubleshooting" class="docs-section">
+        <h2>🐛 Troubleshooting</h2>
+
+        <h3>Common Issues & Solutions</h3>
+
+        <h4>❌ Animation Not Working</h4>
+        <div class="error-box">
+          <strong>Problem:</strong> The animation doesn't play at all.
+        </div>
+        <p><strong>Solutions:</strong></p>
+        <ul>
+          <li>Check that your @keyframes name matches the animation-name</li>
+          <li>Ensure you have both @keyframes and animation property</li>
+          <li>Verify CSS syntax (missing semicolons, brackets)</li>
+          <li>Check browser developer tools for errors</li>
+        </ul>
+
+        <h4>❌ Animation Too Fast/Slow</h4>
+        <div class="code-example" data-label="Speed adjustment">
+          /* Too fast? Increase duration */ animation: bounce 4s infinite; /*
+          was 1s */ /* Too slow? Decrease duration */ animation: bounce 0.5s
+          infinite; /* was 2s */
+        </div>
+
+        <h4>❌ Animation Jumps at the End</h4>
+        <p>This happens when your 0% and 100% keyframes don't match:</p>
+        <div class="code-example" data-label="Fix jumping">
+          @keyframes smooth-bounce { 0%, 100% { transform: translateY(0); /*
+          Same values */ } 50% { transform: translateY(-30px); } }
+        </div>
+
+        <h4>❌ Animation Only Plays Once</h4>
+        <div class="code-example" data-label="Make it repeat">
+          /* Add 'infinite' to repeat forever */ animation: bounce 2s infinite;
+          /* Or specify number of times */ animation: bounce 2s 3; /* plays 3
+          times */
+        </div>
+
+        <h3>Browser DevTools Debugging</h3>
+        <ol>
+          <li>Right-click on animated element → "Inspect Element"</li>
+          <li>Go to "Computed" tab to see applied animations</li>
+          <li>Use "Animations" panel to control playback</li>
+          <li>Check "Console" for any CSS errors</li>
+        </ol>
+      </section>
+
+      <section id="performance" class="docs-section">
+        <h2>⚡ Performance Tips</h2>
+
+        <h3>Use GPU-Accelerated Properties</h3>
+        <p>
+          These properties trigger hardware acceleration for smooth 60fps
+          animations:
+        </p>
+
+        <div class="tip-box">
+          <strong>✅ Fast Properties:</strong> transform, opacity, filter
+        </div>
+
+        <div class="warning-box">
+          <strong>⚠️ Slow Properties:</strong> width, height, top, left,
+          background-color
+        </div>
+
+        <div class="code-example" data-label="Good vs Bad">
+          /* ✅ GOOD - Uses transform */ @keyframes slide-good { from {
+          transform: translateX(-100px); } to { transform: translateX(0); } } /*
+          ❌ BAD - Changes layout property */ @keyframes slide-bad { from {
+          left: -100px; } to { left: 0; } }
+        </div>
+
+        <h3>Optimize for Mobile</h3>
+        <ul>
+          <li>Use shorter durations on mobile (1-2s max)</li>
+          <li>Reduce the number of simultaneous animations</li>
+          <li>Add will-change property for complex animations</li>
+          <li>Test on actual devices, not just desktop</li>
+        </ul>
+
+        <div class="code-example" data-label="Mobile optimization">
+          .animated-element { will-change: transform; /* Hint to browser */
+          animation: bounce 1.5s ease-out; /* Shorter duration */ } /* Remove
+          will-change when done */ .animated-element.finished { will-change:
+          auto; }
+        </div>
+      </section>
+
+      <section id="browser-support" class="docs-section">
+        <h2>🌐 Browser Support</h2>
+
+        <h3>Modern Browser Support</h3>
+        <p>CSS animations work in all modern browsers:</p>
+        <ul>
+          <li>✅ Chrome 43+ (2015)</li>
+          <li>✅ Firefox 16+ (2012)</li>
+          <li>✅ Safari 9+ (2015)</li>
+          <li>✅ Edge 12+ (2015)</li>
+        </ul>
+
+        <h3>Legacy Browser Support</h3>
+        <div class="warning-box">
+          <strong>⚠️ Internet Explorer:</strong> Partial support in IE10+, no
+          support in IE9 and below.
+        </div>
+
+        <h3>Vendor Prefixes (Rarely Needed Now)</h3>
+        <div class="code-example" data-label="Vendor prefixes">
+          /* Usually not needed anymore, but for very old browsers: */
+          @-webkit-keyframes bounce { /* Old Chrome/Safari */ } @-moz-keyframes
+          bounce { /* Old Firefox */ } @keyframes bounce { /* Modern browsers */
+          }
+        </div>
+
+        <h3>Feature Detection</h3>
+        <div class="code-example" data-label="JavaScript detection">
+          // Check if CSS animations are supported if ('animation' in
+          document.documentElement.style) { // Animations supported - add
+          animated class element.classList.add('animated'); } else { // No
+          animation support - show static version
+          element.classList.add('static'); }
+        </div>
+      </section>
+
+      <section id="examples" class="docs-section">
+        <h2>📝 Complete Examples</h2>
+
+        <h3>Example 1: Animated Loading Button</h3>
+        <div class="code-example" data-label="HTML">
+          &lt;button class="loading-btn" onclick="startLoading()"&gt; &lt;span
+          class="btn-text"&gt;Click Me&lt;/span&gt; &lt;span class="spinner
+          hidden"&gt;&lt;/span&gt; &lt;/button&gt;
+        </div>
+
+        <div class="code-example" data-label="CSS">
+          .loading-btn { padding: 12px 24px; border: none; border-radius: 8px;
+          background: #00bcd4; color: white; cursor: pointer; position:
+          relative; transition: all 0.3s ease; } .spinner { width: 20px; height:
+          20px; border: 2px solid transparent; border-top: 2px solid white;
+          border-radius: 50%; animation: spin 1s linear infinite; } .hidden {
+          display: none; } @keyframes spin { 0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); } }
+        </div>
+
+        <div class="code-example" data-label="JavaScript">
+          function startLoading() { const btn =
+          document.querySelector('.loading-btn'); const text =
+          btn.querySelector('.btn-text'); const spinner =
+          btn.querySelector('.spinner'); text.classList.add('hidden');
+          spinner.classList.remove('hidden'); btn.disabled = true; // Simulate
+          loading setTimeout(() => { text.classList.remove('hidden');
+          spinner.classList.add('hidden'); btn.disabled = false;
+          text.textContent = 'Success!'; }, 3000); }
+        </div>
+
+        <h3>Example 2: Card Hover Effects</h3>
+        <div class="code-example" data-label="Complete card example">
+          &lt;div class="card"&gt; &lt;img src="image.jpg" alt="Card image"&gt;
+          &lt;div class="card-content"&gt; &lt;h3&gt;Card Title&lt;/h3&gt;
+          &lt;p&gt;Card description text&lt;/p&gt; &lt;/div&gt; &lt;/div&gt;
+          &lt;style&gt; .card { width: 300px; border-radius: 12px; overflow:
+          hidden; box-shadow: 0 4px 8px rgba(0,0,0,0.1); transition: all 0.3s
+          ease; cursor: pointer; } .card:hover { transform: translateY(-8px)
+          scale(1.02); box-shadow: 0 12px 24px rgba(0,0,0,0.15); } .card img {
+          width: 100%; height: 200px; object-fit: cover; transition: transform
+          0.3s ease; } .card:hover img { transform: scale(1.1); } .card-content
+          { padding: 1.5rem; background: white; } &lt;/style&gt;
+        </div>
+
+        <div class="tip-box">
+          <strong>💡 Next Steps:</strong> Try combining different animations
+          from our gallery to create unique effects! Visit the
+          <a href="playground.html" style="color: var(--accent-primary)"
+            >Playground</a
+          >
+          to experiment.
+        </div>
+      </section>
+    </div>
+
+    <button
+      class="back-to-top"
+      onclick="window.scrollTo({top: 0, behavior: 'smooth'})"
+    >
+      ↑
+    </button>
+
+    <script>
+      // Initialize theme
+      const themeToggle = document.getElementById("themeToggle");
+      const theme = localStorage.getItem("theme") || "dark";
+      if (theme === "light") {
+        document.documentElement.setAttribute("data-theme", "light");
+        themeToggle.textContent = "☀️";
+      }
+      themeToggle.onclick = () => {
+        const current = document.documentElement.getAttribute("data-theme");
+        const newTheme = current === "light" ? "dark" : "light";
+        document.documentElement.setAttribute("data-theme", newTheme);
+        themeToggle.textContent = newTheme === "light" ? "☀️" : "🌙";
+        localStorage.setItem("theme", newTheme);
+      };
+
+      // Create particles
+      const container = document.getElementById("particles");
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement("div");
+        particle.className = "particle";
+        particle.style.width = particle.style.height =
+          Math.random() * 4 + 2 + "px";
+        particle.style.left = Math.random() * 100 + "%";
+        particle.style.animationDelay = Math.random() * 20 + "s";
+        container.appendChild(particle);
+      }
+    </script>
+
+    <!-- Buy Me a Coffee Floating Button -->
+    <div class="coffee-float-btn" id="coffeeBtn" title="Support the Developer">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <path
+          fill="currentColor"
+          d="M18.5 3H6c-1.1 0-2 .9-2 2v5.71c0 3.83 2.95 7.18 6.78 7.29c3.96.12 7.22-3.06 7.22-7v-1h.5c1.93 0 3.5-1.57 3.5-3.5S20.43 3 18.5 3M16 5v3h.5c.83 0 1.5-.67 1.5-1.5S17.33 5 16.5 5H16M6 5h8v11c0 2.76-2.24 5-5 5s-5-2.24-5-5V5Z"
+        />
+      </svg>
+    </div>
+
+    <!-- Buy Me a Coffee Modal -->
+    <div id="coffeeModal" class="coffee-modal hidden">
+      <div class="coffee-modal-content">
+        <div class="coffee-modal-header">
+          <h3>☕ Learning a Lot?</h3>
+          <button class="coffee-close" id="coffeeClose">×</button>
+        </div>
+        <div class="coffee-modal-body">
+          <div class="coffee-icon">☕</div>
+          <h4>Found the docs helpful?</h4>
+          <p>
+            If this comprehensive guide helped you master CSS animations,
+            consider supporting the project! Your contribution helps maintain
+            and expand this educational resource.
+          </p>
+
+          <div class="support-options">
+            <a
+              href="https://buymeacoffee.com/your-username"
+              target="_blank"
+              class="coffee-btn primary"
+            >
+              <span>☕</span>
+              Buy Me a Coffee
+            </a>
+            <a
+              href="https://ko-fi.com/your-username"
+              target="_blank"
+              class="coffee-btn secondary"
+            >
+              <span>💖</span>
+              Ko-fi
+            </a>
+            <a
+              href="https://razorpay.me/@your-username"
+              target="_blank"
+              class="coffee-btn tertiary"
+            >
+              <span>💜</span>
+              Razorpay (UPI)
+            </a>
+            <a
+              href="https://pages.razorpay.com/your-page"
+              target="_blank"
+              class="coffee-btn quaternary"
+            >
+              <span>📱</span>
+              UPI / Card
+            </a>
+          </div>
+
+          <p class="coffee-thanks">Thank you for supporting education! 📚✨</p>
+        </div>
+      </div>
+    </div>
+
+    <link rel="stylesheet" href="assets/styles/coffee-modal.css" />
+    <script src="assets/scripts/coffee-modal.js"></script>
+  </body>
+</html>

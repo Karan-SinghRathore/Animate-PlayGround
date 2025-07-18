@@ -1,0 +1,846 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Primary SEO Tags -->
+    <title>
+      CSS Animation Playground - Create, Learn & Explore CSS Animations Online
+    </title>
+    <meta
+      name="description"
+      content="Interactive CSS Animation Playground with live code editor, animation gallery, and tutorials. Learn CSS animations, keyframes, transforms, and create stunning effects online for free."
+    />
+    <meta
+      name="keywords"
+      content="CSS animations, CSS playground, keyframes, transforms, web animations, online editor, CSS tutorial, animation gallery, frontend development, web design"
+    />
+    <meta name="author" content="CSS Animation Playground" />
+    <meta name="robots" content="index, follow" />
+    <link rel="canonical" href="https://css-animation-playground.com/" />
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://css-animation-playground.com/" />
+    <meta
+      property="og:title"
+      content="CSS Animation Playground - Create, Learn & Explore CSS Animations"
+    />
+    <meta
+      property="og:description"
+      content="Interactive online playground for creating and learning CSS animations. Features live code editor, animation gallery, and comprehensive tutorials."
+    />
+    <meta
+      property="og:image"
+      content="https://css-animation-playground.com/og-image.png"
+    />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="CSS Animation Playground" />
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:url" content="https://css-animation-playground.com/" />
+    <meta
+      name="twitter:title"
+      content="CSS Animation Playground - Create & Learn CSS Animations"
+    />
+    <meta
+      name="twitter:description"
+      content="Interactive CSS Animation Playground with live editor and gallery. Perfect for learning and experimenting with CSS animations."
+    />
+    <meta
+      name="twitter:image"
+      content="https://css-animation-playground.com/twitter-card.png"
+    />
+    <meta name="twitter:creator" content="@css_playground" />
+
+    <!-- Additional SEO -->
+    <meta name="theme-color" content="#00bcd4" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="CSS Playground" />
+    <link rel="apple-touch-icon" href="favicon.svg" />
+
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/styles/style.css" />
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebApplication",
+        "name": "CSS Animation Playground",
+        "alternateName": "CSS Playground",
+        "description": "Interactive online playground for creating and learning CSS animations with live code editor, animation gallery, and comprehensive tutorials.",
+        "url": "https://css-animation-playground.com/",
+        "applicationCategory": "DesignApplication",
+        "operatingSystem": "Web Browser",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "USD"
+        },
+        "featureList": [
+          "Live CSS Animation Editor",
+          "Interactive Animation Gallery",
+          "CSS Tutorial Library",
+          "Real-time Preview",
+          "Code Export Feature",
+          "Animation Examples"
+        ],
+        "creator": {
+          "@type": "Organization",
+          "name": "CSS Animation Playground",
+          "url": "https://css-animation-playground.com/"
+        },
+        "dateCreated": "2024",
+        "inLanguage": "en-US",
+        "isAccessibleForFree": true,
+        "keywords": "CSS animations, web development, frontend, design tools, online editor"
+      }
+    </script>
+
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "BreadcrumbList",
+        "itemListElement": [
+          {
+            "@type": "ListItem",
+            "position": 1,
+            "name": "Home",
+            "item": "https://css-animation-playground.com/"
+          },
+          {
+            "@type": "ListItem",
+            "position": 2,
+            "name": "Playground",
+            "item": "https://css-animation-playground.com/playground.html"
+          },
+          {
+            "@type": "ListItem",
+            "position": 3,
+            "name": "Gallery",
+            "item": "https://css-animation-playground.com/gallery.html"
+          }
+        ]
+      }
+    </script>
+  </head>
+  <body>
+    <div class="loading-screen hidden" id="loadingScreen">
+      <div class="loader"></div>
+    </div>
+    <div class="page-transition" id="pageTransition"></div>
+    <div class="particles" id="particles"></div>
+
+    <header role="banner">
+      <nav class="navbar" role="navigation" aria-label="Main navigation">
+        <div class="logo">AnimationPlayground</div>
+        <div class="nav-container">
+          <ul class="nav-links">
+            <li>
+              <a href="index.html" class="active" aria-current="page">Home</a>
+            </li>
+            <li>
+              <a
+                href="playground.html"
+                data-tooltip="Create your own animations"
+                >Playground</a
+              >
+            </li>
+            <li>
+              <a href="gallery.html" data-tooltip="Browse animation examples"
+                >Gallery</a
+              >
+            </li>
+            <li>
+              <a href="docs.html" data-tooltip="Learn how to use CSS animations"
+                >📚 Docs</a
+              >
+            </li>
+          </ul>
+          <button
+            class="theme-toggle"
+            id="themeToggle"
+            aria-label="Toggle dark/light theme"
+          >
+            🌙
+          </button>
+        </div>
+      </nav>
+    </header>
+    <main role="main">
+      <section class="hero" aria-labelledby="main-heading">
+        <svg
+          class="blob"
+          viewBox="0 0 200 200"
+          role="img"
+          aria-label="Animated background blob"
+        >
+          <path
+            id="blob-path"
+            fill="#00bcd4"
+            d="M46.3,-67.6C58.6,-59.6,66.5,-46.7,70.3,-33.5C74.1,-20.3,73.8,-6.8,71.5,6.3C69.2,19.5,64.8,32.2,57.2,44C49.6,55.7,38.8,66.4,26.4,70.6C14,74.8,0.1,72.6,-14,71.2C-28,69.8,-42.1,69.2,-53.3,61.5C-64.4,53.9,-72.6,39.1,-76.5,24.2C-80.3,9.3,-79.9,-5.7,-74.4,-19.7C-68.9,-33.8,-58.3,-46.9,-45.6,-55.9C-32.9,-65,-16.5,-69.9,-0.3,-69.5C15.8,-69.1,31.6,-63.7,46.3,-67.6Z"
+            transform="translate(100 100)"
+          />
+        </svg>
+        <button
+          class="arrow-prompt"
+          aria-label="Click to start animation demonstration"
+        >
+        </button>
+
+        <div class="hero-content">
+          <h1 id="main-heading" class="title">CSS Animation Playground</h1>
+          <p>Create. Animate. Explore.</p>
+          <a href="playground.html" class="glow-btn" role="button"
+            >Get Started</a
+          >
+        </div>
+      </section>
+
+      <section class="home-gallery-preview" aria-labelledby="trending-heading">
+        <h2 id="trending-heading" class="home-gallery-title">
+          Trending Animations
+        </h2>
+
+        <div class="preview-gallery">
+          <!-- Card 1: Floating Blob -->
+          <div class="effect-card fade-in loading">
+            <div class="skeleton skeleton-preview"></div>
+            <div class="skeleton skeleton-text wide"></div>
+            <div class="skeleton skeleton-text medium"></div>
+            <div class="skeleton skeleton-text narrow"></div>
+            <div class="skeleton skeleton-code"></div>
+
+            <div class="preview animate-blob"></div>
+            <pre class="code-block">
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-15px); }
+}
+.animate-blob {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #00e5ff, #00bcd4);
+  animation: bounce 2.5s ease-in-out infinite;
+}</pre
+            >
+          </div>
+
+          <!-- Card 2: Glow Pulse -->
+          <div class="effect-card fade-in loading">
+            <div class="skeleton skeleton-preview"></div>
+            <div class="skeleton skeleton-text wide"></div>
+            <div class="skeleton skeleton-text medium"></div>
+            <div class="skeleton skeleton-text narrow"></div>
+            <div class="skeleton skeleton-code"></div>
+
+            <div class="preview animate-pulse"></div>
+            <pre class="code-block">
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0px #00e5ff; }
+  50% { box-shadow: 0 0 20px #00e5ff; }
+}
+.animate-pulse {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: #00e5ff;
+  animation: pulse 2s infinite;
+}</pre
+            >
+          </div>
+
+          <!-- Card 3: Rotating Ring -->
+          <div class="effect-card fade-in loading">
+            <div class="skeleton skeleton-preview"></div>
+            <div class="skeleton skeleton-text wide"></div>
+            <div class="skeleton skeleton-text medium"></div>
+            <div class="skeleton skeleton-text narrow"></div>
+            <div class="skeleton skeleton-code"></div>
+
+            <div class="preview animate-ring"></div>
+            <pre class="code-block">
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.animate-ring {
+  width: 60px;
+  height: 60px;
+  border: 4px solid #00e5ff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+}</pre
+            >
+          </div>
+          <div class="effect-card fade-in loading">
+            <div class="skeleton skeleton-preview"></div>
+            <div class="skeleton skeleton-text wide"></div>
+            <div class="skeleton skeleton-text medium"></div>
+            <div class="skeleton skeleton-text narrow"></div>
+            <div class="skeleton skeleton-code"></div>
+
+            <div class="preview animate-cube"></div>
+            <pre class="code-block">
+@keyframes cube3D {
+  0% { transform: rotateX(0deg) rotateY(0deg); }
+  33% { transform: rotateX(90deg) rotateY(180deg); }
+  66% { transform: rotateX(180deg) rotateY(180deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg); }
+}
+.animate-cube {
+  background: linear-gradient(45deg, #00bcd4, #00e5ff);
+  animation: cube3D 3s infinite linear;
+  transform-style: preserve-3d;
+}</pre
+            >
+          </div>
+          <div class="effect-card fade-in loading">
+            <div class="skeleton skeleton-preview"></div>
+            <div class="skeleton skeleton-text wide"></div>
+            <div class="skeleton skeleton-text medium"></div>
+            <div class="skeleton skeleton-text narrow"></div>
+            <div class="skeleton skeleton-code"></div>
+
+            <div class="preview animate-wave"></div>
+            <pre class="code-block">
+@keyframes wave {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+.animate-wave {
+  background: linear-gradient(90deg, transparent, #00bcd4, transparent);
+  animation: wave 2s infinite;
+  position: relative;
+  overflow: hidden;
+}</pre
+            >
+          </div>
+          <div class="effect-card fade-in loading">
+            <div class="skeleton skeleton-preview"></div>
+            <div class="skeleton skeleton-text wide"></div>
+            <div class="skeleton skeleton-text medium"></div>
+            <div class="skeleton skeleton-text narrow"></div>
+            <div class="skeleton skeleton-code"></div>
+
+            <div class="preview animate-morph"></div>
+            <pre class="code-block">
+@keyframes morphShape {
+  0%, 100% { border-radius: 50%; transform: scale(1); }
+  25% { border-radius: 0; transform: scale(1.2) rotate(45deg); }
+  50% { border-radius: 20px; transform: scale(0.8) rotate(90deg); }
+  75% { border-radius: 50% 0; transform: scale(1.1) rotate(135deg); }
+}
+.animate-morph {
+  animation: morphShape 4s infinite ease-in-out;
+}</pre
+            >
+          </div>
+        </div>
+
+        <div class="center-btn">
+          <a href="gallery.html" class="glow-btn show-all-btn">Show All →</a>
+        </div>
+      </section>
+    </main>
+
+    <script>
+      function createParticles() {
+        const container = document.getElementById("particles");
+        for (let i = 0; i < 30; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.width = particle.style.height =
+            Math.random() * 4 + 2 + "px";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.animationDelay = Math.random() * 20 + "s";
+          container.appendChild(particle);
+        }
+      }
+
+      function initTheme() {
+        const themeToggle = document.getElementById("themeToggle");
+        const theme = localStorage.getItem("theme") || "dark";
+        if (theme === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+          themeToggle.textContent = "☀️";
+        }
+        themeToggle.onclick = () => {
+          const current = document.documentElement.getAttribute("data-theme");
+          const newTheme = current === "light" ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", newTheme);
+          themeToggle.textContent = newTheme === "light" ? "☀️" : "🌙";
+          localStorage.setItem("theme", newTheme);
+        };
+      }
+
+      function initInteractions() {
+        const blob = document.querySelector(".blob");
+        const arrow = document.querySelector(".arrow-prompt");
+        const gallery = document.querySelector(".home-gallery-preview");
+
+        arrow.onclick = () => {
+          // Hide the click me button
+          arrow.style.display = "none";
+
+          // Start blob explosion
+          blob.classList.add("explode");
+
+          // Return blob to normal and show gallery
+          setTimeout(() => {
+            blob.classList.remove("explode");
+            blob.classList.add("return");
+            gallery.classList.add("reveal");
+          }, 800);
+
+          // Complete the return animation
+          setTimeout(() => {
+            blob.classList.remove("return");
+          }, 1600);
+        };
+
+        document.addEventListener("mousemove", (e) => {
+          if (blob && !blob.classList.contains("explode")) {
+            const centerX = window.innerWidth / 2;
+            const centerY = window.innerHeight / 2;
+            const deltaX = (e.clientX - centerX) / centerX;
+            const deltaY = (e.clientY - centerY) / centerY;
+            blob.style.transform = `translate(-50%, -50%) translateX(${deltaX * 50}px) translateY(${deltaY * 50}px) scale(${1 + Math.abs(deltaX) * 0.2})`;
+          }
+        });
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry, i) => {
+              if (entry.isIntersecting) {
+                setTimeout(
+                  () => entry.target.classList.add("visible"),
+                  i * 150,
+                );
+                observer.unobserve(entry.target); // Stop observing once animated
+              }
+            });
+          },
+          {
+            threshold: 0.1,
+            rootMargin: "50px 0px",
+          },
+        );
+
+        document
+          .querySelectorAll(".fade-in")
+          .forEach((card) => observer.observe(card));
+
+        document.querySelectorAll("a[href*='.html']").forEach((link) => {
+          link.onclick = (e) => {
+            e.preventDefault();
+            document.getElementById("pageTransition").classList.add("active");
+            setTimeout(() => (window.location.href = link.href), 500);
+          };
+        });
+      }
+
+      function initSkeletonLoaders() {
+        // Remove loading class from cards after staggered delays
+        const loadingCards = document.querySelectorAll(".effect-card.loading");
+        loadingCards.forEach((card, index) => {
+          setTimeout(
+            () => {
+              card.classList.remove("loading");
+              setTimeout(() => card.classList.add("visible"), 100);
+            },
+            500 + index * 200,
+          ); // Stagger the loading
+        });
+      }
+
+      function initScrollEffects() {
+        const navbar = document.querySelector(".navbar");
+
+        window.addEventListener("scroll", () => {
+          if (window.scrollY > 50) {
+            navbar.classList.add("scrolled");
+          } else {
+            navbar.classList.remove("scrolled");
+          }
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        createParticles();
+        initTheme();
+        initInteractions();
+        initSkeletonLoaders();
+        initScrollEffects();
+      });
+    </script>
+
+    <!-- Buy Me a Coffee Floating Button -->
+    <div class="coffee-float-btn" id="coffeeBtn" title="Support the Developer">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <path
+          fill="currentColor"
+          d="M18.5 3H6c-1.1 0-2 .9-2 2v5.71c0 3.83 2.95 7.18 6.78 7.29c3.96.12 7.22-3.06 7.22-7v-1h.5c1.93 0 3.5-1.57 3.5-3.5S20.43 3 18.5 3M16 5v3h.5c.83 0 1.5-.67 1.5-1.5S17.33 5 16.5 5H16M6 5h8v11c0 2.76-2.24 5-5 5s-5-2.24-5-5V5Z"
+        />
+      </svg>
+    </div>
+
+    <!-- Buy Me a Coffee Modal -->
+    <div id="coffeeModal" class="coffee-modal hidden">
+      <div class="coffee-modal-content">
+        <div class="coffee-modal-header">
+          <h3>☕ Support the Developer</h3>
+          <button class="coffee-close" id="coffeeClose">×</button>
+        </div>
+        <div class="coffee-modal-body">
+          <div class="coffee-icon">☕</div>
+          <h4>Enjoying the CSS Animation Playground?</h4>
+          <p>
+            If this tool helped you create amazing animations, consider buying
+            me a coffee! Your support helps keep this project free and
+            constantly improving.
+          </p>
+
+          <div class="support-options">
+            <a
+              href="https://buymeacoffee.com/your-username"
+              target="_blank"
+              class="coffee-btn primary"
+            >
+              <span>☕</span>
+              Buy Me a Coffee
+            </a>
+            <a
+              href="https://ko-fi.com/your-username"
+              target="_blank"
+              class="coffee-btn secondary"
+            >
+              <span>💖</span>
+              Ko-fi
+            </a>
+            <a
+              href="https://razorpay.me/@your-username"
+              target="_blank"
+              class="coffee-btn tertiary"
+            >
+              <span>💜</span>
+              Razorpay (UPI)
+            </a>
+            <a
+              href="https://pages.razorpay.com/your-page"
+              target="_blank"
+              class="coffee-btn quaternary"
+            >
+              <span>📱</span>
+              UPI / Card
+            </a>
+          </div>
+
+          <div class="coffee-benefits">
+            <h5>What your support helps with:</h5>
+            <ul>
+              <li>🆕 Adding new animation examples</li>
+              <li>🐛 Bug fixes and improvements</li>
+              <li>📚 More tutorials and documentation</li>
+              <li>⚡ Server costs and maintenance</li>
+            </ul>
+          </div>
+
+          <p class="coffee-thanks">Thank you for being awesome! 🙏</p>
+        </div>
+      </div>
+    </div>
+
+    <style>
+      .coffee-float-btn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
+        transition: all 0.3s ease;
+        z-index: 1000;
+        color: white;
+        animation: coffeeFloat 3s ease-in-out infinite;
+      }
+
+      .coffee-float-btn:hover {
+        transform: translateY(-5px) scale(1.1);
+        box-shadow: 0 8px 30px rgba(255, 107, 53, 0.6);
+      }
+
+      @keyframes coffeeFloat {
+        0%,
+        100% {
+          transform: translateY(0);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .coffee-modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.8);
+        backdrop-filter: blur(10px);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 10000;
+        opacity: 0;
+        transition: opacity 0.3s ease;
+      }
+
+      .coffee-modal.show {
+        opacity: 1;
+      }
+
+      .coffee-modal.hidden {
+        display: none;
+      }
+
+      .coffee-modal-content {
+        background: linear-gradient(
+          135deg,
+          rgba(22, 27, 34, 0.95),
+          rgba(13, 17, 23, 0.95)
+        );
+        border: 1px solid rgba(255, 107, 53, 0.3);
+        border-radius: 20px;
+        max-width: 500px;
+        width: 90%;
+        max-height: 80vh;
+        overflow-y: auto;
+        animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+      }
+
+      @keyframes modalSlideIn {
+        from {
+          transform: translateY(-50px) scale(0.9);
+          opacity: 0;
+        }
+        to {
+          transform: translateY(0) scale(1);
+          opacity: 1;
+        }
+      }
+
+      .coffee-modal-header {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 2rem 2rem 1rem;
+        border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+      }
+
+      .coffee-modal-header h3 {
+        color: #ff6b35;
+        margin: 0;
+        font-size: 1.5rem;
+      }
+
+      .coffee-close {
+        background: none;
+        border: none;
+        color: var(--text-secondary);
+        font-size: 1.5rem;
+        cursor: pointer;
+        width: 32px;
+        height: 32px;
+        border-radius: 50%;
+        transition: all 0.2s ease;
+      }
+
+      .coffee-close:hover {
+        background: rgba(255, 107, 53, 0.1);
+        color: #ff6b35;
+      }
+
+      .coffee-modal-body {
+        padding: 2rem;
+        text-align: center;
+      }
+
+      .coffee-icon {
+        font-size: 4rem;
+        margin-bottom: 1rem;
+        animation: coffeeRotate 2s ease-in-out infinite;
+      }
+
+      @keyframes coffeeRotate {
+        0%,
+        100% {
+          transform: rotate(0deg);
+        }
+        50% {
+          transform: rotate(10deg);
+        }
+      }
+
+      .coffee-modal-body h4 {
+        color: var(--text-primary);
+        font-size: 1.3rem;
+        margin-bottom: 1rem;
+      }
+
+      .coffee-modal-body p {
+        color: var(--text-secondary);
+        line-height: 1.6;
+        margin-bottom: 2rem;
+      }
+
+      .support-options {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+        margin-bottom: 2rem;
+      }
+
+      .coffee-btn {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        padding: 1rem 1.5rem;
+        border-radius: 12px;
+        text-decoration: none;
+        font-weight: 600;
+        transition: all 0.3s ease;
+        border: none;
+        cursor: pointer;
+      }
+
+      .coffee-btn.primary {
+        background: linear-gradient(135deg, #ff6b35, #f7931e);
+        color: white;
+        box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+      }
+
+      .coffee-btn.primary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
+      }
+
+      .coffee-btn.secondary {
+        background: linear-gradient(135deg, #29b6f6, #03a9f4);
+        color: white;
+        box-shadow: 0 4px 15px rgba(41, 182, 246, 0.4);
+      }
+
+      .coffee-btn.secondary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(41, 182, 246, 0.6);
+      }
+
+      .coffee-btn.tertiary {
+        background: linear-gradient(135deg, #66bb6a, #4caf50);
+        color: white;
+        box-shadow: 0 4px 15px rgba(102, 187, 106, 0.4);
+      }
+
+      .coffee-btn.tertiary:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(102, 187, 106, 0.6);
+      }
+
+      .coffee-benefits {
+        background: rgba(255, 107, 53, 0.1);
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        text-align: left;
+      }
+
+      .coffee-benefits h5 {
+        color: #ff6b35;
+        margin-bottom: 1rem;
+        text-align: center;
+      }
+
+      .coffee-benefits ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .coffee-benefits li {
+        color: var(--text-secondary);
+        margin-bottom: 0.5rem;
+        padding-left: 1rem;
+      }
+
+      .coffee-thanks {
+        color: var(--accent-primary);
+        font-weight: 600;
+        font-size: 1.1rem;
+      }
+
+      @media (max-width: 768px) {
+        .coffee-float-btn {
+          width: 50px;
+          height: 50px;
+          bottom: 15px;
+          right: 15px;
+        }
+
+        .coffee-modal-content {
+          margin: 1rem;
+          width: calc(100% - 2rem);
+        }
+
+        .coffee-modal-header,
+        .coffee-modal-body {
+          padding: 1.5rem;
+        }
+
+        .support-options {
+          gap: 0.8rem;
+        }
+      }
+    </style>
+
+    <script>
+      // Coffee modal functionality
+      document.addEventListener("DOMContentLoaded", () => {
+        const coffeeBtn = document.getElementById("coffeeBtn");
+        const coffeeModal = document.getElementById("coffeeModal");
+        const coffeeClose = document.getElementById("coffeeClose");
+
+        coffeeBtn.addEventListener("click", () => {
+          coffeeModal.classList.remove("hidden");
+          setTimeout(() => coffeeModal.classList.add("show"), 10);
+        });
+
+        coffeeClose.addEventListener("click", () => {
+          coffeeModal.classList.remove("show");
+          setTimeout(() => coffeeModal.classList.add("hidden"), 300);
+        });
+
+        coffeeModal.addEventListener("click", (e) => {
+          if (e.target === coffeeModal) {
+            coffeeModal.classList.remove("show");
+            setTimeout(() => coffeeModal.classList.add("hidden"), 300);
+          }
+        });
+      });
+    </script>
+  </body>
+</html>

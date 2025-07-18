@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Playground - CSS Animation</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <link rel="stylesheet" href="assets/styles/playground.css" />
+  </head>
+  <body>
+    <div class="page-transition" id="pageTransition"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Floating Code Elements -->
+    <div class="floating-code">
+      <div class="code-snippet" style="top: 10%; left: 5%">transform:</div>
+      <div class="code-snippet" style="top: 20%; right: 10%">@keyframes</div>
+      <div class="code-snippet" style="bottom: 30%; left: 8%">animation:</div>
+      <div class="code-snippet" style="bottom: 15%; right: 5%">ease-in-out</div>
+      <div class="code-snippet" style="top: 60%; left: 3%">rotate()</div>
+      <div class="code-snippet" style="top: 40%; right: 7%">.animate</div>
+    </div>
+
+    <nav class="navbar">
+      <div class="logo">AnimationPlayground</div>
+      <div class="nav-container">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li><a href="playground.html" class="active">Playground</a></li>
+          <li>
+            <a href="gallery.html" data-tooltip="Browse animation examples"
+              >Gallery</a
+            >
+          </li>
+          <li>
+            <a href="docs.html" data-tooltip="Need help? Check the docs!"
+              >📚 Docs</a
+            >
+          </li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle">🌙</button>
+      </div>
+    </nav>
+
+    <main class="editor-section">
+      <div class="editor-container glass-panel">
+        <div class="panel-header">
+          <h2 class="panel-title">
+            <span class="title-icon">⚡</span>
+            CSS Animation Editor
+            <span class="title-decoration"></span>
+          </h2>
+          <div class="editor-stats">
+            <span class="stat-item">
+              <span class="stat-label">Lines:</span>
+              <span class="stat-value" id="lineCount">12</span>
+            </span>
+            <span class="stat-item">
+              <span class="stat-label">Chars:</span>
+              <span class="stat-value" id="charCount">245</span>
+            </span>
+          </div>
+        </div>
+
+        <div class="code-editor-wrapper">
+          <div class="line-numbers" id="lineNumbers"></div>
+          <textarea
+            id="cssEditor"
+            placeholder="Write your CSS animation here..."
+            spellcheck="false"
+          >
+@keyframes bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-30px);
+  }
+}
+
+.animated-box {
+  width: 100px;
+  height: 100px;
+  background: #00bcd4;
+  animation: bounce 1s infinite;
+}</textarea
+          >
+        </div>
+
+        <div class="editor-controls">
+          <div class="button-group">
+            <button class="btn-primary" onclick="applyAnimation()">
+              <span class="btn-icon">▶</span>
+              Run Animation
+            </button>
+            <button class="btn-secondary" onclick="resetAnimation()">
+              <span class="btn-icon">↻</span>
+              Reset
+            </button>
+          </div>
+          <div class="button-group">
+            <button class="btn-tertiary" onclick="copyCSS()">
+              <span class="btn-icon"> </span>
+              Copy CSS
+            </button>
+            <button class="btn-tertiary" onclick="saveAnimation()">
+              <span class="btn-icon"></span>
+              Save
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="preview-container glass-panel">
+        <div class="panel-header">
+          <h3 class="panel-title">
+            <span class="title-icon">👁</span>
+            Live Preview
+            <span class="preview-indicator"></span>
+          </h3>
+          <div class="preview-controls">
+            <button class="control-btn" id="playPause" title="Play/Pause">
+              ⏸
+            </button>
+            <button class="control-btn" id="restart" title="Restart">⏮</button>
+          </div>
+        </div>
+
+        <div class="preview-stage">
+          <div class="stage-grid"></div>
+          <div id="preview">
+            <div class="animated-box"></div>
+          </div>
+          <div class="performance-monitor">
+            <div class="fps-counter">
+              <span class="fps-label">FPS:</span>
+              <span class="fps-value" id="fpsValue">60</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <style id="dynamic-style"></style>
+    <div id="toast" class="toast-modern"></div>
+
+    <div id="saveModal" class="modal-overlay hidden" style="display: none">
+      <div class="modal-container">
+        <div class="modal-header">
+          <h3>Save Your Animation</h3>
+          <button class="modal-close" id="closeModal">×</button>
+        </div>
+        <div class="modal-body">
+          <div class="input-group">
+            <label for="animationNameInput">Animation Name</label>
+            <input
+              type="text"
+              id="animationNameInput"
+              placeholder="Enter a creative name..."
+            />
+          </div>
+          <div class="save-preview">
+            <div class="preview-mini">
+              <div class="animated-box-mini"></div>
+            </div>
+            <div class="save-info">
+              <p>
+                This animation will be saved to your gallery for future use.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button class="btn-secondary" id="cancelSave">Cancel</button>
+          <button class="btn-primary" id="confirmSave">
+            <span class="btn-icon"></span>
+            Save Animation
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // Create particles
+        const container = document.getElementById("particles");
+        for (let i = 0; i < 15; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.width = particle.style.height = "2px";
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.animationDelay = Math.random() * 20 + "s";
+          container.appendChild(particle);
+        }
+
+        // Theme toggle
+        document.getElementById("themeToggle").onclick = () => {
+          const theme = document.documentElement.getAttribute("data-theme");
+          const newTheme = theme === "light" ? "dark" : "light";
+          document.documentElement.setAttribute("data-theme", newTheme);
+          document.getElementById("themeToggle").textContent =
+            newTheme === "light" ? "☀️" : "🌙";
+        };
+
+        applyAnimation();
+        document.getElementById("saveModal").style.display = "none";
+      });
+    </script>
+    <script src="assets/scripts/playground.js"></script>
+
+    <!-- Buy Me a Coffee Floating Button -->
+    <div class="coffee-float-btn" id="coffeeBtn" title="Support the Developer">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <path
+          fill="currentColor"
+          d="M18.5 3H6c-1.1 0-2 .9-2 2v5.71c0 3.83 2.95 7.18 6.78 7.29c3.96.12 7.22-3.06 7.22-7v-1h.5c1.93 0 3.5-1.57 3.5-3.5S20.43 3 18.5 3M16 5v3h.5c.83 0 1.5-.67 1.5-1.5S17.33 5 16.5 5H16M6 5h8v11c0 2.76-2.24 5-5 5s-5-2.24-5-5V5Z"
+        />
+      </svg>
+    </div>
+
+    <!-- Buy Me a Coffee Modal -->
+    <div id="coffeeModal" class="coffee-modal hidden">
+      <div class="coffee-modal-content">
+        <div class="coffee-modal-header">
+          <h3>☕ Love the Playground?</h3>
+          <button class="coffee-close" id="coffeeClose">×</button>
+        </div>
+        <div class="coffee-modal-body">
+          <div class="coffee-icon">☕</div>
+          <h4>Created something awesome?</h4>
+          <p>
+            If this playground helped you build amazing animations, consider
+            supporting the project! Your contribution helps keep it free and
+            constantly improving.
+          </p>
+
+          <div class="support-options">
+            <a
+              href="https://buymeacoffee.com/your-username"
+              target="_blank"
+              class="coffee-btn primary"
+            >
+              <span>☕</span>
+              Buy Me a Coffee
+            </a>
+            <a
+              href="https://ko-fi.com/your-username"
+              target="_blank"
+              class="coffee-btn secondary"
+            >
+              <span>💖</span>
+              Ko-fi
+            </a>
+            <a
+              href="https://razorpay.me/@your-username"
+              target="_blank"
+              class="coffee-btn tertiary"
+            >
+              <span>💜</span>
+              Razorpay (UPI)
+            </a>
+            <a
+              href="https://pages.razorpay.com/your-page"
+              target="_blank"
+              class="coffee-btn quaternary"
+            >
+              <span>📱</span>
+              UPI / Card
+            </a>
+          </div>
+
+          <p class="coffee-thanks">Every coffee counts! Thank you! 🚀</p>
+        </div>
+      </div>
+    </div>
+
+    <link rel="stylesheet" href="assets/styles/coffee-modal.css" />
+    <script src="assets/scripts/coffee-modal.js"></script>
+  </body>
+</html>

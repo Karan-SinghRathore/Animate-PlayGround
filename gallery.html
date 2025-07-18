@@ -1,0 +1,1182 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Animation Gallery - CSS Playground</title>
+    <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="assets/styles/style.css" />
+    <link rel="stylesheet" href="assets/styles/gallery.css" />
+  </head>
+  <body>
+    <div class="loading-screen hidden" id="loadingScreen" style="display: none">
+      <div class="loader"></div>
+    </div>
+    <div class="page-transition" id="pageTransition"></div>
+    <div class="particles" id="particles"></div>
+    <div class="floating-elements">
+      <div class="float-element" style="top: 15%; left: 10%">@keyframes</div>
+      <div class="float-element" style="top: 25%; right: 15%">transform</div>
+      <div class="float-element" style="bottom: 30%; left: 8%">animation</div>
+      <div class="float-element" style="bottom: 20%; right: 12%">
+        ease-in-out
+      </div>
+      <div class="float-element" style="top: 50%; left: 5%">rotate()</div>
+      <div class="float-element" style="top: 70%; right: 8%">scale()</div>
+    </div>
+
+    <nav class="navbar">
+      <div class="logo">AnimationPlayground</div>
+      <div class="nav-container">
+        <ul class="nav-links">
+          <li><a href="index.html">Home</a></li>
+          <li>
+            <a href="playground.html" data-tooltip="Create custom animations"
+              >Playground</a
+            >
+          </li>
+          <li><a href="gallery.html" class="active">Gallery</a></li>
+          <li>
+            <a href="docs.html" data-tooltip="Complete learning guide"
+              >📚 Docs</a
+            >
+          </li>
+        </ul>
+        <button class="theme-toggle" id="themeToggle">🌙</button>
+      </div>
+    </nav>
+
+    <main class="gallery-container">
+      <div class="gallery-header">
+        <h1 class="gallery-title">
+          <span class="title-icon">🎨</span>
+          Animation Gallery
+          <span class="title-decoration"></span>
+        </h1>
+        <p class="gallery-subtitle">
+          Discover amazing CSS animations and effects
+        </p>
+      </div>
+      <div class="filter-section glass-panel">
+        <div class="search-container">
+          <div class="search-wrapper">
+            <span class="search-icon">🔍</span>
+            <input
+              type="text"
+              id="searchInput"
+              placeholder="Search animations..."
+              data-tooltip="Search by animation name or CSS properties"
+            />
+            <button class="search-clear" id="clearSearch">×</button>
+          </div>
+        </div>
+
+        <div class="category-filters">
+          <button
+            class="filter-btn active"
+            data-category="all"
+            data-tooltip="Show all animations"
+          >
+            <span class="filter-icon">🌟</span>
+            All
+          </button>
+          <button
+            class="filter-btn"
+            data-category="basic"
+            data-tooltip="Simple animations perfect for beginners"
+          >
+            <span class="filter-icon">⚡</span>
+            Basic
+          </button>
+          <button
+            class="filter-btn"
+            data-category="3d"
+            data-tooltip="3D transforms and perspective effects"
+          >
+            <span class="filter-icon">🎯</span>
+            3D Effects
+          </button>
+          <button
+            class="filter-btn"
+            data-category="advanced"
+            data-tooltip="Complex animations with multiple properties"
+          >
+            <span class="filter-icon">🚀</span>
+            Advanced
+          </button>
+          <button
+            class="filter-btn"
+            data-category="interactive"
+            data-tooltip="Animations that respond to user interaction"
+          >
+            <span class="filter-icon">🎪</span>
+            Interactive
+          </button>
+        </div>
+      </div>
+      <div class="animations-grid" id="animationsGrid">
+        <div
+          class="animation-card glass-card"
+          data-category="basic"
+          data-animation="bounce"
+        >
+          <div class="card-header">
+            <h3 class="card-title">Bounce Effect</h3>
+            <div class="card-controls">
+              <button class="control-btn play-pause" data-action="pause">
+                ⏸
+              </button>
+              <button class="control-btn speed" data-speed="1x">1x</button>
+              <button class="control-btn fullscreen" data-action="fullscreen">
+                ⛶
+              </button>
+            </div>
+          </div>
+          <div class="preview-area">
+            <div class="preview-stage">
+              <div class="preview bounce-demo">⬆</div>
+            </div>
+          </div>
+          <div class="code-section">
+            <pre class="code-block" id="code-bounce">
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+.bounce {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(45deg, #00e5ff, #00bcd4);
+  animation: bounce 2.5s ease-in-out infinite;
+}</pre
+            >
+          </div>
+          <div class="card-actions">
+            <button class="copy-btn" data-target="code-bounce">
+              <span class="btn-icon"> </span>
+              Copy Code
+            </button>
+            <button class="favorite-btn" data-animation="bounce">
+              <span class="btn-icon">🤍</span>
+            </button>
+          </div>
+        </div>
+        <div
+          class="animation-card glass-card"
+          data-category="basic"
+          data-animation="pulse"
+        >
+          <div class="card-header">
+            <h3 class="card-title">Glow Pulse</h3>
+            <div class="card-controls">
+              <button class="control-btn play-pause" data-action="pause">
+                ⏸
+              </button>
+              <button class="control-btn speed" data-speed="1x">1x</button>
+              <button class="control-btn fullscreen" data-action="fullscreen">
+                ⛶
+              </button>
+            </div>
+          </div>
+          <div class="preview-area">
+            <div class="preview-stage">
+              <div class="preview pulse-demo">❤️</div>
+            </div>
+          </div>
+          <div class="code-section">
+            <pre class="code-block" id="code-pulse">
+@keyframes pulse {
+  0%, 100% { box-shadow: 0 0 0px #00e5ff; }
+  50% { box-shadow: 0 0 20px #00e5ff; }
+}
+.pulse {
+  width: 60px;
+  height: 60px;
+  border-radius: 12px;
+  background: #00e5ff;
+  animation: pulse 2s infinite;
+}</pre
+            >
+          </div>
+          <div class="card-actions">
+            <button class="copy-btn" data-target="code-pulse">
+              <span class="btn-icon"> </span>
+              Copy Code
+            </button>
+            <button class="favorite-btn" data-animation="pulse">
+              <span class="btn-icon">🤍</span>
+            </button>
+          </div>
+        </div>
+        <div
+          class="animation-card glass-card"
+          data-category="basic"
+          data-animation="spin"
+        >
+          <div class="card-header">
+            <h3 class="card-title">Rotating Ring</h3>
+            <div class="card-controls">
+              <button class="control-btn play-pause" data-action="pause">
+                ⏸
+              </button>
+              <button class="control-btn speed" data-speed="1x">1x</button>
+              <button class="control-btn fullscreen" data-action="fullscreen">
+                ⛶
+              </button>
+            </div>
+          </div>
+          <div class="preview-area">
+            <div class="preview-stage">
+              <div class="preview spin-demo">⚙️</div>
+            </div>
+          </div>
+          <div class="code-section">
+            <pre class="code-block" id="code-spin">
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+.spin {
+  width: 60px;
+  height: 60px;
+  border: 4px solid #00e5ff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+}</pre
+            >
+          </div>
+          <div class="card-actions">
+            <button class="copy-btn" data-target="code-spin">
+              <span class="btn-icon"> </span>
+              Copy Code
+            </button>
+            <button class="favorite-btn" data-animation="spin">
+              <span class="btn-icon">🤍</span>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="animation-card glass-card"
+          data-category="3d"
+          data-animation="cube3d"
+        >
+          <div class="card-header">
+            <h3 class="card-title">3D Rotating Cube</h3>
+            <div class="card-controls">
+              <button class="control-btn play-pause" data-action="pause">
+                ⏸
+              </button>
+              <button class="control-btn speed" data-speed="1x">1x</button>
+              <button class="control-btn fullscreen" data-action="fullscreen">
+                ⛶
+              </button>
+            </div>
+          </div>
+          <div class="preview-area">
+            <div class="preview-stage">
+              <div class="preview cube3d-demo">🎲</div>
+            </div>
+          </div>
+          <div class="code-section">
+            <pre class="code-block" id="code-cube3d">
+@keyframes cube3D {
+  0% { transform: rotateX(0deg) rotateY(0deg) rotateZ(0deg); }
+  33% { transform: rotateX(90deg) rotateY(180deg) rotateZ(0deg); }
+  66% { transform: rotateX(180deg) rotateY(180deg) rotateZ(90deg); }
+  100% { transform: rotateX(360deg) rotateY(360deg) rotateZ(360deg); }
+}
+.cube3d {
+  background: linear-gradient(45deg, #00bcd4, #00e5ff);
+  animation: cube3D 3s infinite linear;
+  transform-style: preserve-3d;
+}</pre
+            >
+          </div>
+          <div class="card-actions">
+            <button class="copy-btn" data-target="code-cube3d">
+              <span class="btn-icon"> </span>
+              Copy Code
+            </button>
+            <button class="favorite-btn" data-animation="cube3d">
+              <span class="btn-icon">🤍</span>
+            </button>
+          </div>
+        </div>
+
+        <div
+          class="animation-card glass-card"
+          data-category="advanced"
+          data-animation="wave"
+        >
+          <div class="card-header">
+            <h3 class="card-title">Wave Effect</h3>
+            <div class="card-controls">
+              <button class="control-btn play-pause" data-action="pause">
+                ⏸
+              </button>
+              <button class="control-btn speed" data-speed="1x">1x</button>
+              <button class="control-btn fullscreen" data-action="fullscreen">
+                ⛶
+              </button>
+            </div>
+          </div>
+          <div class="preview-area">
+            <div class="preview-stage">
+              <div class="preview wave-demo">🌊</div>
+            </div>
+          </div>
+          <div class="code-section">
+            <pre class="code-block" id="code-wave">
+@keyframes wave {
+  0% { left: -100%; }
+  100% { left: 100%; }
+}
+.wave {
+  background: linear-gradient(90deg, transparent, #00bcd4, transparent);
+  animation: wave 2s infinite;
+  position: relative;
+  overflow: hidden;
+}
+.wave::before {
+  content: '';
+  position: absolute;
+  background: linear-gradient(90deg, transparent, #00e5ff, transparent);
+  animation: wave 2s infinite 0.5s;
+}</pre
+            >
+          </div>
+          <div class="card-actions">
+            <button class="copy-btn" data-target="code-wave">
+              <span class="btn-icon"> </span>
+              Copy Code
+            </button>
+            <button class="favorite-btn" data-animation="wave">
+              <span class="btn-icon">🤍</span>
+            </button>
+          </div>
+        </div>
+        <div
+          class="animation-card glass-card"
+          data-category="advanced"
+          data-animation="morph"
+        >
+          <div class="card-header">
+            <h3 class="card-title">Morphing Shape</h3>
+            <div class="card-controls">
+              <button class="control-btn play-pause" data-action="pause">
+                ⏸
+              </button>
+              <button class="control-btn speed" data-speed="1x">1x</button>
+              <button class="control-btn fullscreen" data-action="fullscreen">
+                ⛶
+              </button>
+            </div>
+          </div>
+          <div class="preview-area">
+            <div class="preview-stage">
+              <div class="preview morph-demo">🔄</div>
+            </div>
+          </div>
+          <div class="code-section">
+            <pre class="code-block" id="code-morph">
+@keyframes morphShape {
+  0%, 100% {
+    border-radius: 50%;
+    transform: scale(1);
+  }
+  25% {
+    border-radius: 0;
+    transform: scale(1.2) rotate(45deg);
+  }
+  50% {
+    border-radius: 20px;
+    transform: scale(0.8) rotate(90deg);
+  }
+  75% {
+    border-radius: 50% 0;
+    transform: scale(1.1) rotate(135deg);
+  }
+}
+.morph {
+  animation: morphShape 4s infinite ease-in-out;
+}</pre
+            >
+          </div>
+          <div class="card-actions">
+            <button class="copy-btn" data-target="code-morph">
+              <span class="btn-icon"> </span>
+              Copy Code
+            </button>
+            <button class="favorite-btn" data-animation="morph">
+              <span class="btn-icon">🤍</span>
+            </button>
+          </div>
+        </div>
+        <div
+          class="animation-card glass-card"
+          data-category="interactive"
+          data-animation="glitch"
+        >
+          <div class="card-header">
+            <h3 class="card-title">Digital Glitch</h3>
+            <div class="card-controls">
+              <button class="control-btn play-pause" data-action="pause">
+                ⏸
+              </button>
+              <button class="control-btn speed" data-speed="1x">1x</button>
+              <button class="control-btn fullscreen" data-action="fullscreen">
+                ⛶
+              </button>
+            </div>
+          </div>
+          <div class="preview-area">
+            <div class="preview-stage">
+              <div class="preview glitch-demo">⚡</div>
+            </div>
+          </div>
+          <div class="code-section">
+            <pre class="code-block" id="code-glitch">
+@keyframes glitch {
+  0%, 90%, 100% {
+    transform: translate(0);
+  }
+  20% {
+    transform: translate(-2px, 2px);
+  }
+  40% {
+    transform: translate(-2px, -2px);
+  }
+  60% {
+    transform: translate(2px, 2px);
+  }
+  80% {
+    transform: translate(2px, -2px);
+  }
+}
+.glitch {
+  animation: glitch 1.5s infinite;
+  position: relative;
+}</pre
+            >
+          </div>
+          <div class="card-actions">
+            <button class="copy-btn" data-target="code-glitch">
+              <span class="btn-icon"> </span>
+              Copy Code
+            </button>
+            <button class="favorite-btn" data-animation="glitch">
+              <span class="btn-icon">🤍</span>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <section class="saved-section" id="savedSection">
+        <div class="section-header glass-panel">
+          <h2 class="section-title">
+            <span class="title-icon"></span>
+            Your Saved Animations
+            <span class="saved-count" id="savedCount">0</span>
+          </h2>
+          <div class="section-actions">
+            <button class="clear-all-btn" id="clearAllBtn">
+              <span class="btn-icon">🗑</span>
+              Clear All
+            </button>
+          </div>
+        </div>
+        <div class="saved-animations-grid" id="savedAnimations">
+          <div class="empty-state">
+            <div class="empty-icon"></div>
+            <h3>No saved animations yet</h3>
+            <p>Create some animations in the playground and save them here!</p>
+            <a href="playground.html" class="cta-btn">
+              <span class="btn-icon"></span>
+              Go to Playground
+            </a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div id="toast" class="toast-modern"></div>
+
+    <!-- Help Modal -->
+ 
+
+    <!-- Tooltip container -->
+    <div id="tooltip" class="tooltip hidden">
+      <div class="tooltip-content"></div>
+      <div class="tooltip-arrow"></div>
+    </div>
+
+    <script>
+      // All functionality moved to external gallery.js file
+
+      function initializeParticles() {
+        const particlesContainer = document.getElementById("particles");
+        for (let i = 0; i < 40; i++) {
+          const particle = document.createElement("div");
+          particle.className = "particle";
+          particle.style.width = Math.random() * 4 + 2 + "px";
+          particle.style.height = particle.style.width;
+          particle.style.left = Math.random() * 100 + "%";
+          particle.style.animationDelay = Math.random() * 20 + "s";
+          particle.style.animationDuration = Math.random() * 10 + 20 + "s";
+          particlesContainer.appendChild(particle);
+        }
+      }
+
+      function initializeTheme() {
+        const themeToggle = document.getElementById("themeToggle");
+        const currentTheme = localStorage.getItem("theme") || "dark";
+
+        if (currentTheme === "light") {
+          document.documentElement.setAttribute("data-theme", "light");
+          themeToggle.textContent = "☀️";
+        }
+
+        themeToggle.addEventListener("click", () => {
+          const theme = document.documentElement.getAttribute("data-theme");
+          if (theme === "light") {
+            document.documentElement.setAttribute("data-theme", "dark");
+            themeToggle.textContent = "🌙";
+            localStorage.setItem("theme", "dark");
+          } else {
+            document.documentElement.setAttribute("data-theme", "light");
+            themeToggle.textContent = "☀️";
+            localStorage.setItem("theme", "light");
+          }
+        });
+      }
+
+      function initializeFilters() {
+        const filterBtns = document.querySelectorAll(".filter-btn");
+        const animationCards = document.querySelectorAll(".animation-card");
+
+        filterBtns.forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const category = btn.dataset.category;
+
+            filterBtns.forEach((b) => b.classList.remove("active"));
+            btn.classList.add("active");
+
+            animationCards.forEach((card) => {
+              if (category === "all" || card.dataset.category === category) {
+                card.style.display = "block";
+                card.style.animation = "slideInUp 0.5s ease forwards";
+              } else {
+                card.style.display = "none";
+              }
+            });
+          });
+        });
+      }
+
+      function initializeSearch() {
+        const searchInput = document.getElementById("searchInput");
+        const clearSearch = document.getElementById("clearSearch");
+        const animationCards = document.querySelectorAll(".animation-card");
+
+        searchInput.addEventListener("input", (e) => {
+          const query = e.target.value.toLowerCase();
+
+          animationCards.forEach((card) => {
+            const title = card
+              .querySelector(".card-title")
+              .textContent.toLowerCase();
+            const code = card
+              .querySelector(".code-block")
+              .textContent.toLowerCase();
+
+            if (title.includes(query) || code.includes(query)) {
+              card.style.display = "block";
+            } else {
+              card.style.display = "none";
+            }
+          });
+
+          clearSearch.style.display = query ? "block" : "none";
+        });
+
+        clearSearch.addEventListener("click", () => {
+          searchInput.value = "";
+          clearSearch.style.display = "none";
+          animationCards.forEach((card) => (card.style.display = "block"));
+        });
+      }
+
+      function initializeAnimationControls() {
+        // Animation control functionality would be implemented here
+        // For now, just visual feedback
+        document.querySelectorAll(".control-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            btn.style.transform = "scale(0.95)";
+            setTimeout(() => {
+              btn.style.transform = "";
+            }, 150);
+          });
+        });
+      }
+
+      // initializeModals function removed - modal elements don't exist
+
+      function initializeCopyFunctionality() {
+        document.querySelectorAll(".copy-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const targetId = btn.dataset.target;
+            const code = document.getElementById(targetId).textContent;
+
+            copyToClipboard(code, btn);
+          });
+        });
+        // Modal copy functionality removed - modal elements don't exist
+      }
+
+      // copyToClipboard function moved to external gallery.js
+
+      function loadSavedAnimations() {
+        const saved = JSON.parse(localStorage.getItem("animations") || "[]");
+        const container = document.getElementById("savedAnimations");
+        const countElement = document.getElementById("savedCount");
+
+        countElement.textContent = saved.length;
+
+        if (saved.length === 0) {
+          return; // Keep empty state
+        }
+
+        container.innerHTML = "";
+
+        saved.forEach((anim, index) => {
+          const card = createSavedAnimationCard(anim, index);
+          container.appendChild(card);
+        });
+      }
+
+      function createSavedAnimationCard(anim, index) {
+        const card = document.createElement("div");
+        card.className = "animation-card glass-card saved-card";
+
+        card.innerHTML = `
+        <div class="card-header">
+          <h3 class="card-title">${anim.name}</h3>
+          <div class="card-controls">
+            <button class="control-btn delete-animation" data-id="${anim.id}">🗑</button>
+          </div>
+        </div>
+        <div class="preview-area">
+          <div class="preview-stage">
+            ${anim.html}
+          </div>
+        </div>
+        <div class="code-section">
+          <pre class="code-block" id="saved-code-${index}">${anim.css}</pre>
+        </div>
+        <div class="card-actions">
+          <button class="copy-btn" data-target="saved-code-${index}">
+            <span class="btn-icon"> </span>
+            Copy Code
+          </button>
+        </div>
+      `;
+
+        const style = document.createElement("style");
+        style.textContent = anim.css;
+        card.appendChild(style);
+
+        // Copy functionality handled by external gallery.js
+
+        card
+          .querySelector(".delete-animation")
+          .addEventListener("click", () => {
+            deleteAnimation(anim.id);
+          });
+
+        return card;
+      }
+
+      function deleteAnimation(id) {
+        let saved = JSON.parse(localStorage.getItem("animations") || "[]");
+        saved = saved.filter((anim) => anim.id !== id);
+        localStorage.setItem("animations", JSON.stringify(saved));
+        showToast("Animation deleted!", "info");
+        loadSavedAnimations();
+      }
+
+      function showToast(message, type = "info") {
+        const toast = document.getElementById("toast");
+        toast.textContent = message;
+        toast.className = `toast-modern ${type}`;
+        toast.classList.add("show");
+
+        setTimeout(() => {
+          toast.classList.remove("show");
+        }, 3000);
+      }
+
+      // Initialize favorites
+      document.querySelectorAll(".favorite-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          btn.classList.toggle("favorited");
+          const icon = btn.querySelector(".btn-icon");
+          icon.textContent = btn.classList.contains("favorited") ? "❤️" : "🤍";
+        });
+      });
+    </script>
+    <script src="assets/scripts/gallery.js"></script>
+    <script>
+      // Ensure copy buttons work
+      document.addEventListener("DOMContentLoaded", function () {
+        setTimeout(() => {
+          document.querySelectorAll(".copy-btn").forEach((btn) => {
+            btn.addEventListener("click", function () {
+              const targetId = this.dataset.target;
+              const codeElement = document.getElementById(targetId);
+              if (codeElement) {
+                const code = codeElement.textContent.trim();
+
+                // Try clipboard API first
+                if (navigator.clipboard && window.isSecureContext) {
+                  navigator.clipboard
+                    .writeText(code)
+                    .then(() => {
+                      showToast("CSS copied!", "success");
+                      this.innerHTML = '<span class="btn-icon">✓</span>Copied!';
+                      this.style.background =
+                        "linear-gradient(135deg, #4ade80, #22c55e)";
+                      setTimeout(() => {
+                        this.innerHTML =
+                          '<span class="btn-icon"> </span>Copy Code';
+                        this.style.background = "";
+                      }, 2000);
+                    })
+                    .catch(() => {
+                      fallbackCopy(code, this);
+                    });
+                } else {
+                  fallbackCopy(code, this);
+                }
+              }
+            });
+          });
+        }, 500);
+
+        function fallbackCopy(text, btn) {
+          const textArea = document.createElement("textarea");
+          textArea.value = text;
+          textArea.style.position = "fixed";
+          textArea.style.left = "-999999px";
+          document.body.appendChild(textArea);
+          textArea.focus();
+          textArea.select();
+
+          try {
+            const successful = document.execCommand("copy");
+            if (successful) {
+              showToast("CSS copied!", "success");
+              btn.innerHTML = '<span class="btn-icon">✓</span>Copied!';
+              btn.style.background =
+                "linear-gradient(135deg, #4ade80, #22c55e)";
+              setTimeout(() => {
+                btn.innerHTML = '<span class="btn-icon"> </span>Copy Code';
+                btn.style.background = "";
+              }, 2000);
+            } else {
+              showToast("Copy failed", "error");
+            }
+          } catch (err) {
+            showToast("Copy not supported", "error");
+          }
+
+          document.body.removeChild(textArea);
+        }
+
+        function showToast(message, type = "info") {
+          const toast = document.getElementById("toast");
+          if (toast) {
+            toast.textContent = message;
+            toast.className = `toast-modern ${type}`;
+            toast.classList.add("show");
+            setTimeout(() => toast.classList.remove("show"), 3000);
+          }
+        }
+
+        // Help modal functionality
+        const helpData = {
+          bounce: {
+            title: "How to Use: Bounce Animation",
+            content: `
+              <h4>1. Copy the CSS Code</h4>
+              <p>Click "Copy Code" to copy the animation CSS to your clipboard.</p>
+
+              <h4>2. Create Your HTML Structure</h4>
+              <div class="code-example" data-label="HTML">
+&lt;div class="bounce-element"&gt;
+  Your Content Here
+&lt;/div&gt;
+              </div>
+
+              <h4>3. Add the CSS to Your Stylesheet</h4>
+              <div class="code-example" data-label="CSS">
+/* Paste the copied CSS here */
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-30px); }
+}
+
+.bounce-element {
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(45deg, #00e5ff, #00bcd4);
+  animation: bounce 2.5s ease-in-out infinite;
+}
+              </div>
+
+              <div class="tip">
+                <strong>💡 Tip:</strong> You can change the animation speed by modifying the duration (2.5s) or the bounce height by changing the translateY value (-30px).
+              </div>
+
+              <h4>4. Customize the Animation</h4>
+              <ul>
+                <li>Change <code>2.5s</code> to make it faster (1s) or slower (4s)</li>
+                <li>Modify <code>-30px</code> to change bounce height</li>
+                <li>Add <code>animation-delay: 0.5s;</code> to delay the start</li>
+                <li>Remove <code>infinite</code> to play only once</li>
+              </ul>
+            `,
+          },
+          pulse: {
+            title: "How to Use: Pulse Animation",
+            content: `
+              <h4>1. Copy the CSS Code</h4>
+              <p>Click "Copy Code" to copy the pulsing glow animation.</p>
+
+              <h4>2. Create Your HTML</h4>
+              <div class="code-example" data-label="HTML">
+&lt;div class="pulse-element"&gt;
+  Content with glow effect
+&lt;/div&gt;
+              </div>
+
+              <h4>3. Apply the CSS</h4>
+              <div class="code-example" data-label="CSS">
+.pulse-element {
+  width: 60px;
+  height: 60px;
+  background: #00e5ff;
+  border-radius: 12px;
+  animation: pulse 2s infinite;
+}
+              </div>
+
+              <div class="tip">
+                <strong>💡 Perfect for:</strong> Buttons, notifications, call-to-action elements, or anything that needs attention!
+              </div>
+
+              <h4>Customization Tips</h4>
+              <ul>
+                <li>Change glow color by modifying the box-shadow color</li>
+                <li>Adjust glow intensity by changing the blur radius (20px)</li>
+                <li>Make it subtle by reducing the shadow spread</li>
+              </ul>
+            `,
+          },
+          spin: {
+            title: "How to Use: Spin Animation",
+            content: `
+              <h4>Perfect for Loading Spinners!</h4>
+              <p>This rotation animation is ideal for loading indicators and interactive elements.</p>
+
+              <h4>Basic Implementation</h4>
+              <div class="code-example" data-label="HTML">
+&lt;div class="spinner"&gt;&lt;/div&gt;
+              </div>
+
+              <div class="code-example" data-label="CSS">
+.spinner {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #00e5ff;
+  border-top-color: transparent;
+  border-radius: 50%;
+  animation: spin 1.5s linear infinite;
+}
+              </div>
+
+              <div class="warning">
+                <strong>⚠️ Performance Note:</strong> Use <code>transform</code> instead of changing other properties for smooth 60fps animations.
+              </div>
+
+              <h4>Common Use Cases</h4>
+              <ul>
+                <li><strong>Loading spinners</strong> - Show while content loads</li>
+                <li><strong>Button states</strong> - Indicate processing</li>
+                <li><strong>Icons</strong> - Add life to static elements</li>
+                <li><strong>Logos</strong> - Subtle brand animation</li>
+              </ul>
+            `,
+          },
+          cube3d: {
+            title: "How to Use: 3D Cube Animation",
+            content: `
+              <h4>Advanced 3D Animation</h4>
+              <p>This creates a complex 3D rotation effect that works in modern browsers.</p>
+
+              <div class="warning">
+                <strong>⚠️ Browser Support:</strong> 3D transforms work in all modern browsers but may not work in older versions of IE.
+              </div>
+
+              <h4>HTML Setup</h4>
+              <div class="code-example" data-label="HTML">
+&lt;div class="cube-container"&gt;
+  &lt;div class="cube-3d"&gt;Your content&lt;/div&gt;
+&lt;/div&gt;
+              </div>
+
+              <h4>Required CSS</h4>
+              <div class="code-example" data-label="CSS">
+.cube-container {
+  perspective: 1000px; /* Important for 3D effect */
+}
+
+.cube-3d {
+  transform-style: preserve-3d; /* Enable 3D transforms */
+  animation: cube3D 3s infinite linear;
+}
+              </div>
+
+              <div class="tip">
+                <strong>💡 Pro Tip:</strong> Adjust the <code>perspective</code> value to change how "deep" the 3D effect appears. Higher values = more subtle, lower values = more dramatic.
+              </div>
+            `,
+          },
+          wave: {
+            title: "How to Use: Wave Animation",
+            content: `
+              <h4>Flowing Wave Effect</h4>
+              <p>Creates a smooth wave motion perfect for backgrounds and loading effects.</p>
+
+              <h4>HTML Structure</h4>
+              <div class="code-example" data-label="HTML">
+&lt;div class="wave-container"&gt;
+  &lt;div class="wave-element"&gt;&lt;/div&gt;
+&lt;/div&gt;
+              </div>
+
+              <h4>CSS Implementation</h4>
+              <div class="code-example" data-label="CSS">
+.wave-container {
+  position: relative;
+  overflow: hidden; /* Important to hide wave outside bounds */
+}
+
+.wave-element {
+  background: linear-gradient(90deg, transparent, #00bcd4, transparent);
+  animation: wave 2s infinite;
+  position: relative;
+}
+              </div>
+
+              <h4>Popular Uses</h4>
+              <ul>
+                <li><strong>Loading bars</strong> - Show progress</li>
+                <li><strong>Background effects</strong> - Subtle motion</li>
+                <li><strong>Button hovers</strong> - Interactive feedback</li>
+                <li><strong>Card highlights</strong> - Draw attention</li>
+              </ul>
+
+              <div class="tip">
+                <strong>💡 Customize:</strong> Change the gradient colors to match your brand colors!
+              </div>
+            `,
+          },
+          morph: {
+            title: "How to Use: Morphing Shape",
+            content: `
+              <h4>Shape-Shifting Animation</h4>
+              <p>Creates smooth transitions between different shapes and sizes.</p>
+
+              <h4>Basic Setup</h4>
+              <div class="code-example" data-label="HTML">
+&lt;div class="morph-shape"&gt;&lt;/div&gt;
+              </div>
+
+              <h4>Key CSS Properties</h4>
+              <div class="code-example" data-label="CSS">
+.morph-shape {
+  width: 100px;
+  height: 100px;
+  background: #00bcd4;
+  animation: morphShape 4s infinite ease-in-out;
+}
+              </div>
+
+              <h4>Understanding the Animation</h4>
+              <ul>
+                <li><strong>0% & 100%:</strong> Circle shape (border-radius: 50%)</li>
+                <li><strong>25%:</strong> Square with rotation</li>
+                <li><strong>50%:</strong> Rounded rectangle</li>
+                <li><strong>75%:</strong> Asymmetrical shape</li>
+              </ul>
+
+              <div class="tip">
+                <strong>💡 Creative Uses:</strong> Perfect for logos, buttons, or any element where you want to add visual interest and playfulness!
+              </div>
+
+              <div class="warning">
+                <strong>⚠️ Performance:</strong> Morphing animations can be CPU-intensive. Use sparingly on mobile devices.
+              </div>
+            `,
+          },
+          glitch: {
+            title: "How to Use: Digital Glitch Effect",
+            content: `
+              <h4>Cyberpunk-Style Glitch</h4>
+              <p>Creates a digital distortion effect perfect for tech and gaming themes.</p>
+
+              <h4>HTML Structure</h4>
+              <div class="code-example" data-label="HTML">
+&lt;div class="glitch-text"&gt;
+  GLITCH EFFECT
+&lt;/div&gt;
+              </div>
+
+              <h4>CSS Animation</h4>
+              <div class="code-example" data-label="CSS">
+.glitch-text {
+  position: relative;
+  animation: glitch 1.5s infinite;
+  /* Add your text styling here */
+}
+              </div>
+
+              <h4>Best Practices</h4>
+              <ul>
+                <li>Use on dark backgrounds for best effect</li>
+                <li>Apply to headings, buttons, or accent elements</li>
+                <li>Don't overuse - can be distracting</li>
+                <li>Perfect for gaming, tech, or futuristic themes</li>
+              </ul>
+
+              <div class="tip">
+                <strong>💡 Enhancement:</strong> Combine with color changes or text-shadow for more dramatic effects!
+              </div>
+
+              <div class="warning">
+                <strong>⚠️ Accessibility:</strong> Rapid animations can trigger motion sensitivity. Consider adding a toggle to disable animations.
+              </div>
+            `,
+          },
+        };
+
+        // Initialize help modal functionality
+        document.querySelectorAll(".how-to-btn").forEach((btn) => {
+          btn.addEventListener("click", () => {
+            const animation = btn.dataset.animation;
+            const data = helpData[animation];
+            if (data) {
+              document.getElementById("helpTitle").textContent = data.title;
+              document.getElementById("helpContent").innerHTML = data.content;
+              document.getElementById("helpModal").classList.remove("hidden");
+              document.getElementById("helpModal").style.display = "flex";
+            }
+          });
+        });
+
+        // Close help modal
+        document
+          .getElementById("closeHelpModal")
+          .addEventListener("click", () => {
+            document.getElementById("helpModal").classList.add("hidden");
+            document.getElementById("helpModal").style.display = "none";
+          });
+
+        document.getElementById("closeHelp").addEventListener("click", () => {
+          document.getElementById("helpModal").classList.add("hidden");
+          document.getElementById("helpModal").style.display = "none";
+        });
+
+        // Close modal when clicking outside
+        document.getElementById("helpModal").addEventListener("click", (e) => {
+          if (e.target.id === "helpModal") {
+            document.getElementById("helpModal").classList.add("hidden");
+            document.getElementById("helpModal").style.display = "none";
+          }
+        });
+      });
+    </script>
+
+    <!-- Buy Me a Coffee Floating Button -->
+    <div class="coffee-float-btn" id="coffeeBtn" title="Support the Developer">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <path
+          fill="currentColor"
+          d="M18.5 3H6c-1.1 0-2 .9-2 2v5.71c0 3.83 2.95 7.18 6.78 7.29c3.96.12 7.22-3.06 7.22-7v-1h.5c1.93 0 3.5-1.57 3.5-3.5S20.43 3 18.5 3M16 5v3h.5c.83 0 1.5-.67 1.5-1.5S17.33 5 16.5 5H16M6 5h8v11c0 2.76-2.24 5-5 5s-5-2.24-5-5V5Z"
+        />
+      </svg>
+    </div>
+
+    <!-- Buy Me a Coffee Modal -->
+    <div id="coffeeModal" class="coffee-modal hidden">
+      <div class="coffee-modal-content">
+        <div class="coffee-modal-header">
+          <h3>☕ Found the Perfect Animation?</h3>
+          <button class="coffee-close" id="coffeeClose">×</button>
+        </div>
+        <div class="coffee-modal-body">
+          <div class="coffee-icon">☕</div>
+          <h4>Copying animations like a pro?</h4>
+          <p>
+            If our gallery helped you find the perfect animation for your
+            project, consider buying me a coffee! It helps keep this collection
+            growing.
+          </p>
+
+          <div class="support-options">
+            <a
+              href="https://buymeacoffee.com/your-username"
+              target="_blank"
+              class="coffee-btn primary"
+            >
+              <span>☕</span>
+              Buy Me a Coffee
+            </a>
+            <a
+              href="https://ko-fi.com/your-username"
+              target="_blank"
+              class="coffee-btn secondary"
+            >
+              <span>💖</span>
+              Ko-fi
+            </a>
+            <a
+              href="https://razorpay.me/@your-username"
+              target="_blank"
+              class="coffee-btn tertiary"
+            >
+              <span>💜</span>
+              Razorpay (UPI)
+            </a>
+            <a
+              href="https://pages.razorpay.com/your-page"
+              target="_blank"
+              class="coffee-btn quaternary"
+            >
+              <span>📱</span>
+              UPI / Card
+            </a>
+          </div>
+
+          <p class="coffee-thanks">Your support means the world! 🌟</p>
+        </div>
+      </div>
+    </div>
+
+    <link rel="stylesheet" href="assets/styles/coffee-modal.css" />
+    <script src="assets/scripts/coffee-modal.js"></script>
+  </body>
+</html>

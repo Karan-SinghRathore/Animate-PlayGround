@@ -1,0 +1,268 @@
+.coffee-float-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 60px;
+  height: 60px;
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4);
+  transition: all 0.3s ease;
+  z-index: 1000;
+  color: white;
+  animation: coffeeFloat 3s ease-in-out infinite;
+  border: none;
+}
+
+.coffee-float-btn:hover {
+  transform: translateY(-5px) scale(1.1);
+  box-shadow: 0 8px 30px rgba(255, 107, 53, 0.6);
+}
+
+@keyframes coffeeFloat {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+}
+
+.coffee-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(10px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10000;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.coffee-modal.show {
+  opacity: 1;
+}
+
+.coffee-modal.hidden {
+  display: none;
+}
+
+.coffee-modal-content {
+  background: linear-gradient(
+    135deg,
+    rgba(22, 27, 34, 0.95),
+    rgba(13, 17, 23, 0.95)
+  );
+  border: 1px solid rgba(255, 107, 53, 0.3);
+  border-radius: 20px;
+  max-width: 500px;
+  width: 90%;
+  max-height: 80vh;
+  overflow-y: auto;
+  animation: modalSlideIn 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+@keyframes modalSlideIn {
+  from {
+    transform: translateY(-50px) scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0) scale(1);
+    opacity: 1;
+  }
+}
+
+.coffee-modal-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem 2rem 1rem;
+  border-bottom: 1px solid rgba(255, 107, 53, 0.2);
+}
+
+.coffee-modal-header h3 {
+  color: #ff6b35;
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.coffee-close {
+  background: none;
+  border: none;
+  color: var(--text-secondary);
+  font-size: 1.5rem;
+  cursor: pointer;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  transition: all 0.2s ease;
+}
+
+.coffee-close:hover {
+  background: rgba(255, 107, 53, 0.1);
+  color: #ff6b35;
+}
+
+.coffee-modal-body {
+  padding: 2rem;
+  text-align: center;
+}
+
+.coffee-icon {
+  font-size: 4rem;
+  margin-bottom: 1rem;
+  animation: coffeeRotate 2s ease-in-out infinite;
+}
+
+@keyframes coffeeRotate {
+  0%,
+  100% {
+    transform: rotate(0deg);
+  }
+  50% {
+    transform: rotate(10deg);
+  }
+}
+
+.coffee-modal-body h4 {
+  color: var(--text-primary);
+  font-size: 1.3rem;
+  margin-bottom: 1rem;
+}
+
+.coffee-modal-body p {
+  color: var(--text-secondary);
+  line-height: 1.6;
+  margin-bottom: 2rem;
+}
+
+.support-options {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.coffee-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 1rem 1.5rem;
+  border-radius: 12px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.3s ease;
+  border: none;
+  cursor: pointer;
+}
+
+.coffee-btn.primary {
+  background: linear-gradient(135deg, #ff6b35, #f7931e);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 107, 53, 0.4);
+}
+
+.coffee-btn.primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 107, 53, 0.6);
+}
+
+.coffee-btn.secondary {
+  background: linear-gradient(135deg, #29b6f6, #03a9f4);
+  color: white;
+  box-shadow: 0 4px 15px rgba(41, 182, 246, 0.4);
+}
+
+.coffee-btn.secondary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(41, 182, 246, 0.6);
+}
+
+.coffee-btn.tertiary {
+  background: linear-gradient(135deg, #9c27b0, #673ab7);
+  color: white;
+  box-shadow: 0 4px 15px rgba(156, 39, 176, 0.4);
+}
+
+.coffee-btn.tertiary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(156, 39, 176, 0.6);
+}
+
+.coffee-btn.quaternary {
+  background: linear-gradient(135deg, #ff5722, #e64a19);
+  color: white;
+  box-shadow: 0 4px 15px rgba(255, 87, 34, 0.4);
+}
+
+.coffee-btn.quaternary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(255, 87, 34, 0.6);
+}
+
+.coffee-benefits {
+  background: rgba(255, 107, 53, 0.1);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 1rem;
+  text-align: left;
+}
+
+.coffee-benefits h5 {
+  color: #ff6b35;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.coffee-benefits ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.coffee-benefits li {
+  color: var(--text-secondary);
+  margin-bottom: 0.5rem;
+  padding-left: 1rem;
+}
+
+.coffee-thanks {
+  color: var(--accent-primary);
+  font-weight: 600;
+  font-size: 1.1rem;
+}
+
+@media (max-width: 768px) {
+  .coffee-float-btn {
+    width: 50px;
+    height: 50px;
+    bottom: 15px;
+    right: 15px;
+  }
+
+  .coffee-modal-content {
+    margin: 1rem;
+    width: calc(100% - 2rem);
+  }
+
+  .coffee-modal-header,
+  .coffee-modal-body {
+    padding: 1.5rem;
+  }
+
+  .support-options {
+    gap: 0.8rem;
+  }
+}
