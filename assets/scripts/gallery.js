@@ -7,7 +7,7 @@ function showToast(message, type = "info") {
 }
 
 document.addEventListener("DOMContentLoaded", () => {
-  // Particles
+  
   const container = document.getElementById("particles");
   for (let i = 0; i < 20; i++) {
     const particle = document.createElement("div");
@@ -102,7 +102,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   initCopyButtons();
 
-  // Search
   const searchInput = document.getElementById("searchInput");
   const clearSearch = document.getElementById("clearSearch");
 
@@ -123,7 +122,6 @@ document.addEventListener("DOMContentLoaded", () => {
       .forEach((card) => (card.style.display = "block"));
   });
 
-  // Filter buttons
   document.querySelectorAll(".filter-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       document
@@ -140,7 +138,6 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Favorites
   document.querySelectorAll(".favorite-btn").forEach((btn) => {
     btn.addEventListener("click", () => {
       btn.classList.toggle("favorited");
@@ -188,7 +185,7 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
 
-    // Re-initialize copy buttons for newly added elements
+  
     initCopyButtons();
   }
 });
