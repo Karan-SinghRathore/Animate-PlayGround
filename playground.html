@@ -12,7 +12,6 @@
     <div class="page-transition" id="pageTransition"></div>
     <div class="particles" id="particles"></div>
 
-    <!-- Floating Code Elements -->
     <div class="floating-code">
       <div class="code-snippet" style="top: 10%; left: 5%">transform:</div>
       <div class="code-snippet" style="top: 20%; right: 10%">@keyframes</div>
@@ -183,7 +182,7 @@
 
     <script>
       document.addEventListener("DOMContentLoaded", () => {
-        // Create particles
+
         const container = document.getElementById("particles");
         for (let i = 0; i < 15; i++) {
           const particle = document.createElement("div");
@@ -194,7 +193,7 @@
           container.appendChild(particle);
         }
 
-        // Theme toggle
+  
         document.getElementById("themeToggle").onclick = () => {
           const theme = document.documentElement.getAttribute("data-theme");
           const newTheme = theme === "light" ? "dark" : "light";
@@ -218,8 +217,6 @@
         />
       </svg>
     </div>
-
-    <!-- Buy Me a Coffee Modal -->
     <div id="coffeeModal" class="coffee-modal hidden">
       <div class="coffee-modal-content">
         <div class="coffee-modal-header">
@@ -249,7 +246,6 @@
               target="_blank"
               class="coffee-btn secondary"
             >
-              <span>💖</span>
               Ko-fi
             </a>
             <a
@@ -265,12 +261,10 @@
               target="_blank"
               class="coffee-btn quaternary"
             >
-              <span>📱</span>
-              UPI / Card
             </a>
           </div>
 
-          <p class="coffee-thanks">Every coffee counts! Thank you! 🚀</p>
+          <p class="coffee-thanks">Every coffee counts! Thank you!</p>
         </div>
       </div>
     </div>
