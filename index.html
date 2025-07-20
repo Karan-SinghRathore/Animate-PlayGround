@@ -4,7 +4,6 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <!-- Primary SEO Tags -->
     <title>
       CSS Animation Playground - Create, Learn & Explore CSS Animations Online
     </title>
@@ -20,7 +19,6 @@
     <meta name="robots" content="index, follow" />
     <link rel="canonical" href="https://css-animation-playground.com/" />
 
-    <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://css-animation-playground.com/" />
     <meta
@@ -39,7 +37,7 @@
     <meta property="og:image:height" content="630" />
     <meta property="og:site_name" content="CSS Animation Playground" />
 
-    <!-- Twitter Card -->
+
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://css-animation-playground.com/" />
     <meta
@@ -56,7 +54,7 @@
     />
     <meta name="twitter:creator" content="@css_playground" />
 
-    <!-- Additional SEO -->
+
     <meta name="theme-color" content="#00bcd4" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="default" />
@@ -66,7 +64,6 @@
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
     <link rel="stylesheet" href="assets/styles/style.css" />
 
-    <!-- Structured Data -->
     <script type="application/ld+json">
       {
         "@context": "https://schema.org",
@@ -208,7 +205,7 @@
         </h2>
 
         <div class="preview-gallery">
-          <!-- Card 1: Floating Blob -->
+        
           <div class="effect-card fade-in loading">
             <div class="skeleton skeleton-preview"></div>
             <div class="skeleton skeleton-text wide"></div>
@@ -232,7 +229,6 @@
             >
           </div>
 
-          <!-- Card 2: Glow Pulse -->
           <div class="effect-card fade-in loading">
             <div class="skeleton skeleton-preview"></div>
             <div class="skeleton skeleton-text wide"></div>
@@ -255,8 +251,6 @@
 }</pre
             >
           </div>
-
-          <!-- Card 3: Rotating Ring -->
           <div class="effect-card fade-in loading">
             <div class="skeleton skeleton-preview"></div>
             <div class="skeleton skeleton-text wide"></div>
@@ -387,20 +381,14 @@
         const gallery = document.querySelector(".home-gallery-preview");
 
         arrow.onclick = () => {
-          // Hide the click me button
           arrow.style.display = "none";
-
           // Start blob explosion
           blob.classList.add("explode");
-
-          // Return blob to normal and show gallery
           setTimeout(() => {
             blob.classList.remove("explode");
             blob.classList.add("return");
             gallery.classList.add("reveal");
           }, 800);
-
-          // Complete the return animation
           setTimeout(() => {
             blob.classList.remove("return");
           }, 1600);
@@ -457,7 +445,7 @@
               setTimeout(() => card.classList.add("visible"), 100);
             },
             500 + index * 200,
-          ); // Stagger the loading
+          );
         });
       }
 
@@ -491,8 +479,6 @@
         />
       </svg>
     </div>
-
-    <!-- Buy Me a Coffee Modal -->
     <div id="coffeeModal" class="coffee-modal hidden">
       <div class="coffee-modal-content">
         <div class="coffee-modal-header">
@@ -514,7 +500,7 @@
               target="_blank"
               class="coffee-btn primary"
             >
-              <span>☕</span>
+              <span></span>
               Buy Me a Coffee
             </a>
             <a
@@ -522,7 +508,7 @@
               target="_blank"
               class="coffee-btn secondary"
             >
-              <span>💖</span>
+              <span></span>
               Ko-fi
             </a>
             <a
@@ -530,7 +516,7 @@
               target="_blank"
               class="coffee-btn tertiary"
             >
-              <span>💜</span>
+              <span></span>
               Razorpay (UPI)
             </a>
             <a
@@ -538,8 +524,6 @@
               target="_blank"
               class="coffee-btn quaternary"
             >
-              <span>📱</span>
-              UPI / Card
             </a>
           </div>
 
