@@ -504,17 +504,13 @@
 
     <div id="toast" class="toast-modern"></div>
 
-    <!-- Help Modal -->
- 
-
-    <!-- Tooltip container -->
     <div id="tooltip" class="tooltip hidden">
       <div class="tooltip-content"></div>
       <div class="tooltip-arrow"></div>
     </div>
 
     <script>
-      // All functionality moved to external gallery.js file
+  
 
       function initializeParticles() {
         const particlesContainer = document.getElementById("particles");
@@ -610,8 +606,7 @@
       }
 
       function initializeAnimationControls() {
-        // Animation control functionality would be implemented here
-        // For now, just visual feedback
+      
         document.querySelectorAll(".control-btn").forEach((btn) => {
           btn.addEventListener("click", () => {
             btn.style.transform = "scale(0.95)";
@@ -633,11 +628,10 @@
             copyToClipboard(code, btn);
           });
         });
-        // Modal copy functionality removed - modal elements don't exist
+       
       }
 
-      // copyToClipboard function moved to external gallery.js
-
+     
       function loadSavedAnimations() {
         const saved = JSON.parse(localStorage.getItem("animations") || "[]");
         const container = document.getElementById("savedAnimations");
@@ -646,7 +640,7 @@
         countElement.textContent = saved.length;
 
         if (saved.length === 0) {
-          return; // Keep empty state
+          return; 
         }
 
         container.innerHTML = "";
@@ -688,7 +682,7 @@
         style.textContent = anim.css;
         card.appendChild(style);
 
-        // Copy functionality handled by external gallery.js
+      
 
         card
           .querySelector(".delete-animation")
@@ -718,7 +712,7 @@
         }, 3000);
       }
 
-      // Initialize favorites
+
       document.querySelectorAll(".favorite-btn").forEach((btn) => {
         btn.addEventListener("click", () => {
           btn.classList.toggle("favorited");
@@ -1073,7 +1067,7 @@
           },
         };
 
-        // Initialize help modal functionality
+ 
         document.querySelectorAll(".how-to-btn").forEach((btn) => {
           btn.addEventListener("click", () => {
             const animation = btn.dataset.animation;
@@ -1087,7 +1081,7 @@
           });
         });
 
-        // Close help modal
+     
         document
           .getElementById("closeHelpModal")
           .addEventListener("click", () => {
@@ -1100,7 +1094,7 @@
           document.getElementById("helpModal").style.display = "none";
         });
 
-        // Close modal when clicking outside
+ 
         document.getElementById("helpModal").addEventListener("click", (e) => {
           if (e.target.id === "helpModal") {
             document.getElementById("helpModal").classList.add("hidden");
@@ -1120,7 +1114,6 @@
       </svg>
     </div>
 
-    <!-- Buy Me a Coffee Modal -->
     <div id="coffeeModal" class="coffee-modal hidden">
       <div class="coffee-modal-content">
         <div class="coffee-modal-header">
