@@ -18,7 +18,7 @@ document.addEventListener("DOMContentLoaded", () => {
     container.appendChild(particle);
   }
 
-  // Theme toggle
+
   const themeToggle = document.getElementById("themeToggle");
   const theme = localStorage.getItem("theme") || "dark";
   if (theme === "light") {
@@ -33,7 +33,6 @@ document.addEventListener("DOMContentLoaded", () => {
     localStorage.setItem("theme", newTheme);
   };
 
-  // Copy functionality
   function copyToClipboard(text, btn) {
     if (navigator.clipboard && window.isSecureContext) {
       navigator.clipboard
@@ -149,7 +148,7 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Load saved animations
+
   const saved = JSON.parse(localStorage.getItem("animations") || "[]");
   const container = document.getElementById("savedAnimations");
   document.getElementById("savedCount").textContent = saved.length;
