@@ -1,4 +1,4 @@
-// Coffee modal functionality
+
 document.addEventListener("DOMContentLoaded", () => {
   const coffeeBtn = document.getElementById("coffeeBtn");
   const coffeeModal = document.getElementById("coffeeModal");
@@ -27,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // Close on Escape key
   document.addEventListener("keydown", (e) => {
     if (e.key === "Escape" && !coffeeModal.classList.contains("hidden")) {
       closeCoffeeModal();
@@ -38,21 +37,16 @@ document.addEventListener("DOMContentLoaded", () => {
     coffeeModal.classList.remove("show");
     setTimeout(() => coffeeModal.classList.add("hidden"), 300);
   }
-
-  // Track clicks on support links
   document.querySelectorAll(".coffee-btn").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const platform = e.currentTarget.textContent.trim().toLowerCase();
 
-      // Track conversion (you can add analytics here)
       if (typeof gtag !== "undefined") {
         gtag("event", "support_click", {
           event_category: "conversion",
           event_label: platform,
         });
       }
-
-      // Show thank you message
       setTimeout(() => {
         if (!coffeeModal.classList.contains("hidden")) {
           const thankYouMsg = document.createElement("div");
@@ -81,16 +75,15 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 
-  // Show coffee button after some time (optional - for better conversion)
   setTimeout(() => {
     if (coffeeBtn) {
       coffeeBtn.style.animation =
         "coffeeFloat 3s ease-in-out infinite, coffeePulse 1s ease-in-out 3";
     }
-  }, 30000); // Show attention-grabbing animation after 30 seconds
+  }, 30000); 
 });
 
-// Add pulse animation for attention
+
 const pulseKeyframes = `
   @keyframes coffeePulse {
     0%, 100% { box-shadow: 0 4px 20px rgba(255, 107, 53, 0.4); }
@@ -98,7 +91,7 @@ const pulseKeyframes = `
   }
 `;
 
-// Inject pulse animation
+
 if (!document.getElementById("coffee-pulse-styles")) {
   const style = document.createElement("style");
   style.id = "coffee-pulse-styles";
